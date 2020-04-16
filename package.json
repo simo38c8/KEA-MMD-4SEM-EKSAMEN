@@ -1,0 +1,22 @@
+{
+  "name": "geden",
+  "version": "1.0.0",
+  "description": "This is the final project of the programme MMD by Patrick, Mouad & Simon",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/patr612e/Geden2300.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/patr612e/Geden2300/issues"
+  },
+  "homepage": "https://github.com/patr612e/Geden2300#readme",
+  "devDependencies": {
+    "sass": "^1.26.3"
+  }
+}
