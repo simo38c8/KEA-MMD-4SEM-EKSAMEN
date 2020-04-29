@@ -1,3 +1,5 @@
+//ANIMATION NUMMER 1
+
 let tl = new TimelineMax();
 
 const controller = new ScrollMagic.Controller();
@@ -14,13 +16,13 @@ const scene = new ScrollMagic.Scene({
   .addTo(controller)
   .addIndicators();
 
-//LORT NUMMER 2
+//ANIMATION NUMMER 2
 
 let tl2 = new TimelineMax();
 
 const controller2 = new ScrollMagic.Controller();
 
-tl2.to(".animate-me-2", 1, { x: window.innerWidth });
+tl2.to(".animate-me-2", 1, { x: 400 });
 
 const scene2 = new ScrollMagic.Scene({
   triggerElement: ".animate-me-2",
@@ -29,3 +31,29 @@ const scene2 = new ScrollMagic.Scene({
 })
   .setTween(tl2)
   .addTo(controller2);
+
+// ANIMATION DONE
+
+// ADD CLASS TO HEADER ON SCROLL POS
+
+let scrollpos = window.scrollY;
+const header = document.querySelector("header");
+// const header_height = header.offsetHeight;
+
+const add_class_on_scroll = () => header.classList.add("scrolled-header");
+const remove_class_on_scroll = () => header.classList.remove("scrolled-header");
+
+window.addEventListener("scroll", function() {
+  scrollpos = window.scrollY;
+
+  if (scrollpos >= 1) {
+    //  or > header_height
+    add_class_on_scroll();
+  } else {
+    remove_class_on_scroll();
+  }
+
+  console.log(scrollpos);
+});
+
+// HEADER CLASS DONE
