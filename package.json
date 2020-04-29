@@ -19,8 +19,5 @@
   "devDependencies": {
     "sass": "^1.26.3"
   },
-  "dependencies": {
-    "gasp": "0.0.2",
-    "gsap": "^3.2.6"
-  }
+  "dependencies": {}
 }
