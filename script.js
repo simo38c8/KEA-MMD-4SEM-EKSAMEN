@@ -4,7 +4,7 @@ let tl = new TimelineMax();
 
 const controller = new ScrollMagic.Controller();
 
-tl.from(".animate-me", 1, { x: window.innerWidth });
+tl.from(".animate-me", 1, { x: 100 });
 
 const scene = new ScrollMagic.Scene({
   triggerElement: ".animate-me",
@@ -22,7 +22,7 @@ let tl2 = new TimelineMax();
 
 const controller2 = new ScrollMagic.Controller();
 
-tl2.to(".animate-me-2", 1, { x: 400 });
+tl2.to(".animate-me-2", 1, { x: 100 });
 
 const scene2 = new ScrollMagic.Scene({
   triggerElement: ".animate-me-2",
@@ -31,6 +31,24 @@ const scene2 = new ScrollMagic.Scene({
 })
   .setTween(tl2)
   .addTo(controller2);
+
+// ANIMATION DONE
+
+//ANIMATION NUMMER 3
+
+let tl3 = new TimelineMax();
+
+const controller3 = new ScrollMagic.Controller();
+
+tl3.to(".animate-me-3", 1, { rotation: 90 });
+
+const scene3 = new ScrollMagic.Scene({
+  triggerElement: ".animate-me-3",
+  triggerHook: 1,
+  duration: "100%"
+})
+  .setTween(tl3)
+  .addTo(controller3);
 
 // ANIMATION DONE
 
@@ -53,7 +71,7 @@ window.addEventListener("scroll", function() {
     remove_class_on_scroll();
   }
 
-  console.log(scrollpos);
+  // console.log(scrollpos);
 });
 
 // HEADER CLASS DONE

@@ -3,6 +3,8 @@ header {
   padding: 20px 0;
   position: sticky;
   z-index: 1;
+  height: 200px;
+  transition: 0.5s;
 }
 
 nav {
@@ -40,6 +42,7 @@ header.scrolled-header {
   background-color: rgba(255, 255, 255, 0.9);
   margin: 0;
   padding: 0;
+  height: 100px;
 
   nav {
     display: flex;
