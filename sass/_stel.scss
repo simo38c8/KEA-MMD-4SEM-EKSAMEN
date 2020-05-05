@@ -61,35 +61,3 @@ body {
   text-align: right;
   justify-self: end;
 }
-
-.canvas {
-  height: 100vh;
-  width: 100%;
-  background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
-  overflow: hidden;
-}
-
-.animate-me,
-.animate-me-2 {
-  width: calc(100% + 400px);
-  position: relative;
-}
-
-.animate-me-3 {
-  position: relative;
-  width: 300px;
-}
-
-.animate-me {
-  left: -200px;
-}
-
-.animate-me-2 {
-  left: -200px;
-}
-
-footer {
-  height: 100vh;
-  width: 100%;
-  background-color: aliceblue;
-}

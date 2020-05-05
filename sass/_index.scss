@@ -8,10 +8,98 @@
   overflow: hidden;
 }
 
+// #splash::after {
+//   content: "";
+//   position: absolute;
+//   top: 0;
+//   left: 0;
+//   bottom: 0;
+//   right: 0;
+//   background-color: rgba(0, 0, 0, 0.33);
+// }
+
 #splash .logo {
   position: absolute;
   max-width: 300;
   left: 50%;
-  top: 40%;
-  transform: translateX(-50%);
+  top: 50%;
+  transform: translateX(-50%) translateY(-40%);
+}
+
+@keyframes drift {
+  0% {
+    transform: rotate(360deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+.wave {
+  opacity: 0.6;
+  position: absolute;
+  top: 90%;
+  left: 0;
+  width: 300%;
+  height: 300%;
+  border-radius: 33%;
+  animation: drift 20s infinite linear;
+  background-color: $yellow;
+}
+
+.column {
+  max-width: 1140px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.column {
+  background-color: $white-background;
+}
+
+.animate-me,
+.animate-me-2,
+.animate-me-4 {
+  width: calc(100% + 400px);
+  position: relative;
+  margin: 30px 0;
+}
+
+.animate-me-3 {
+  position: relative;
+  width: 400px;
+  bottom: 100px;
+  right: -85%;
+}
+
+.animate-me,
+.animate-me-2,
+.animate-me-4 {
+  left: -200px;
+}
+
+.steps {
+  display: grid;
+  grid-template-columns: 1fr 2fr 2fr;
+
+  min-height: 200px;
+  //   border: 1px solid #333;
+
+  .number {
+    font-size: 150px;
+    color: $yellow;
+    justify-self: center;
+    margin: 0;
+    font-weight: 400;
+
+    h2 {
+      font-weight: 400;
+    }
+  }
+
+  .step-text {
+    align-self: center;
+    text-transform: uppercase;
+    font-size: 25px;
+  }
 }

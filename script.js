@@ -13,8 +13,8 @@ const scene = new ScrollMagic.Scene({
 })
   // .setPin(".canvas")
   .setTween(tl)
-  .addTo(controller)
-  .addIndicators();
+  .addTo(controller);
+// .addIndicators();
 
 //ANIMATION NUMMER 2
 
@@ -49,6 +49,24 @@ const scene3 = new ScrollMagic.Scene({
 })
   .setTween(tl3)
   .addTo(controller3);
+
+// ANIMATION DONE
+
+//ANIMATION NUMMER 4
+
+let tl4 = new TimelineMax();
+
+const controller4 = new ScrollMagic.Controller();
+
+tl4.from(".animate-me-4", 1, { x: 100 });
+
+const scene4 = new ScrollMagic.Scene({
+  triggerElement: ".animate-me-4",
+  triggerHook: 1,
+  duration: "100%"
+})
+  .setTween(tl4)
+  .addTo(controller4);
 
 // ANIMATION DONE
 
