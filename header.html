@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.scss" />
+  </head>
+  <style>
+    body {
+      height: 200vw;
+    }
+    #splash {
+      width: 100%;
+      height: 100%;
+      background-color: blue;
+    }
+
+    .logo {
+      width: 300px;
+      transition: 1.5s;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      -webkit-transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%);
+    }
+    .sticky {
+      position: fixed;
+      top: 0;
+      /* left: calc((100% - 0px) / 2); */
+      max-width: 100px;
+    }
+
+    .sticky + .content {
+      padding-top: 102px;
+    }
+
+    header {
+      position: fixed;
+    }
+  </style>
+  <body>
+    <header>
+      <nav>
+        <ul>
+          <li><a href="stel.html">Stel på lager</a></li>
+          <li><a href="stel.html">Om os</a></li>
+          <li><a href="stel.html">Reparationer</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <section id="splash">
+      <a href="stel.html"><img class="logo" src="assets/geden.jpg" alt="logo" /></a>
+
+      <h1>eurostile</h1>
+    </section>
+
+    <script>
+      window.onscroll = function () {
+        myFunction();
+      };
+
+      var header = document.querySelector(".logo");
+      var sticky = header.offsetTop;
+
+      function myFunction() {
+        if (window.pageYOffset > sticky) {
+          header.classList.add("sticky");
+        } else {
+          header.classList.remove("sticky");
+        }
+      }
+    </script>
+  </body>
+</html>
