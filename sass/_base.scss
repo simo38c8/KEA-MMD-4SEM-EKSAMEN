@@ -35,3 +35,7 @@ $text-padding: 20px;
 }
 
 /* Loading Screen Styling Ends */
+
+::selection {
+  background-color: $yellow;
+}

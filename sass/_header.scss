@@ -58,6 +58,8 @@ header.scrolled-header {
   padding: 0;
   height: 100px;
   position: fixed;
+  z-index: 5;
+  border-bottom: 4px solid #333;
 
   nav {
     display: flex;
