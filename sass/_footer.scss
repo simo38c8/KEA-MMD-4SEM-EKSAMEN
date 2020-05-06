@@ -26,8 +26,7 @@
   offset-path: path(
     "M2.69,186.46c477.24-12.87,682.36,32.7,856.06,55.89,68.59,9.15,221.91,26,303.89,35.83,226,27,208.86-51,463-91.49,200.53-32,225-13.6,524.34,7.46,228.82,16.09,372.54,32.43,504.64,50.53"
   );
-  animation: bird-animation 0.75s steps(5) infinite,
-    move 6s infinite cubic-bezier(0, 0, 0, 0);
+  animation: bird-animation 0.75s steps(5) infinite, move 6s infinite cubic-bezier(0, 0, 0, 0);
 }
 @keyframes move {
   to {
@@ -42,4 +41,13 @@
   100% {
     background-position: -690px;
   }
+}
+
+.footer-content {
+  background-color: #000;
+  border: 1px solid $yellow;
+  min-height: 300px;
+  width: 100%;
+  position: relative;
+  bottom: 0;
 }
