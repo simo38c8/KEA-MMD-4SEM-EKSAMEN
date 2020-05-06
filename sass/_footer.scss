@@ -1,0 +1,45 @@
+#svgdiv {
+  z-index: 1;
+  transform: translateY(-10.6rem);
+
+  width: 140rem;
+}
+#box {
+  overflow: hidden;
+
+  width: 100vw;
+  padding-top: 3rem;
+  height: 55vh;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+}
+#cykel {
+  position: relative;
+  z-index: 2;
+  margin: 0;
+  width: 130px;
+  height: 95px;
+
+  background: url("assets/cykler5.svg") left center;
+  background-size: cover;
+  offset-path: path(
+    "M2.69,186.46c477.24-12.87,682.36,32.7,856.06,55.89,68.59,9.15,221.91,26,303.89,35.83,226,27,208.86-51,463-91.49,200.53-32,225-13.6,524.34,7.46,228.82,16.09,372.54,32.43,504.64,50.53"
+  );
+  animation: bird-animation 0.75s steps(5) infinite,
+    move 6s infinite cubic-bezier(0, 0, 0, 0);
+}
+@keyframes move {
+  to {
+    motion-offset: 90%;
+    offset-distance: 100%;
+  }
+}
+@keyframes bird-animation {
+  0% {
+    background-position: 0px;
+  }
+  100% {
+    background-position: -690px;
+  }
+}
