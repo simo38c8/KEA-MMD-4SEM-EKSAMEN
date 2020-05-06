@@ -63,6 +63,14 @@
   }
 }
 
+/* MEDIA QUERY TIL BØLGERNE PÅ MOBL */
+@media (max-width: 768px) {
+  .waves {
+    height: 60px;
+    min-height: 60px;
+  }
+}
+
 .column {
   max-width: 1140px;
   margin: 0 auto;
