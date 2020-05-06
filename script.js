@@ -35,6 +35,9 @@ barba.init({
         // do something before leaving the current `index` namespace
         console.log("farvel hjemskærm");
       },
+      beforeEnter() {
+        start();
+      },
     },
     {
       namespace: "product",
@@ -55,83 +58,94 @@ barba.hooks.beforeEnter((data) => {
   // this hook will be called during every transitions
   // before new page content enter…
   console.log("skifter side");
-  start();
 });
 
 function start() {
   console.log("start kaldes");
   //ANIMATION NUMMER 1
 
-  let tl = new TimelineMax();
+  setTimeout(function () {
+    animation1();
+    animation2();
+    animation3();
+    animation4();
+  }, 1000);
 
-  const controller = new ScrollMagic.Controller();
+  function animation1() {
+    let tl = new TimelineMax();
+    const controller = new ScrollMagic.Controller();
+    tl.from(".animate-me", 1, { x: 100 });
 
-  tl.from(".animate-me", 1, { x: 100 });
+    const scene = new ScrollMagic.Scene({
+      triggerElement: ".animate-me",
+      triggerHook: 1, // "onLeave", 0-1
+      duration: "100%",
+    })
+      // .setPin(".canvas")
+      .setTween(tl)
+      .addTo(controller);
+    // .addIndicators();
+  }
 
-  const scene = new ScrollMagic.Scene({
-    triggerElement: ".animate-me",
-    triggerHook: 1, // "onLeave", 0-1
-    duration: "100%",
-  })
-    // .setPin(".canvas")
-    .setTween(tl)
-    .addTo(controller);
-  // .addIndicators();
+  function animation2() {
+    //ANIMATION NUMMER 2
+    console.log("animation 2");
+    let tl2 = new TimelineMax();
 
-  //ANIMATION NUMMER 2
+    const controller2 = new ScrollMagic.Controller();
 
-  let tl2 = new TimelineMax();
+    tl2.to(".animate-me-2", 1, { x: 100 });
 
-  const controller2 = new ScrollMagic.Controller();
+    const scene2 = new ScrollMagic.Scene({
+      triggerElement: ".animate-me-2",
+      triggerHook: 1,
+      duration: "100%",
+    })
+      .setTween(tl2)
+      .addTo(controller2);
 
-  tl2.to(".animate-me-2", 1, { x: 100 });
+    // ANIMATION DONE
+  }
 
-  const scene2 = new ScrollMagic.Scene({
-    triggerElement: ".animate-me-2",
-    triggerHook: 1,
-    duration: "100%",
-  })
-    .setTween(tl2)
-    .addTo(controller2);
+  function animation3() {
+    //ANIMATION NUMMER 3
 
-  // ANIMATION DONE
+    let tl3 = new TimelineMax();
 
-  //ANIMATION NUMMER 3
+    const controller3 = new ScrollMagic.Controller();
 
-  let tl3 = new TimelineMax();
+    tl3.to(".animate-me-3", 1, { rotation: 90 });
 
-  const controller3 = new ScrollMagic.Controller();
+    const scene3 = new ScrollMagic.Scene({
+      triggerElement: ".animate-me-3",
+      triggerHook: 1,
+      duration: "100%",
+    })
+      .setTween(tl3)
+      .addTo(controller3);
 
-  tl3.to(".animate-me-3", 1, { rotation: 90 });
+    // ANIMATION DONE
+  }
 
-  const scene3 = new ScrollMagic.Scene({
-    triggerElement: ".animate-me-3",
-    triggerHook: 1,
-    duration: "100%",
-  })
-    .setTween(tl3)
-    .addTo(controller3);
+  function animation4() {
+    //ANIMATION NUMMER 4
 
-  // ANIMATION DONE
+    let tl4 = new TimelineMax();
 
-  //ANIMATION NUMMER 4
+    const controller4 = new ScrollMagic.Controller();
 
-  let tl4 = new TimelineMax();
+    tl4.from(".animate-me-4", 1, { x: 100 });
 
-  const controller4 = new ScrollMagic.Controller();
+    const scene4 = new ScrollMagic.Scene({
+      triggerElement: ".animate-me-4",
+      triggerHook: 1,
+      duration: "100%",
+    })
+      .setTween(tl4)
+      .addTo(controller4);
 
-  tl4.from(".animate-me-4", 1, { x: 100 });
-
-  const scene4 = new ScrollMagic.Scene({
-    triggerElement: ".animate-me-4",
-    triggerHook: 1,
-    duration: "100%",
-  })
-    .setTween(tl4)
-    .addTo(controller4);
-
-  // ANIMATION DONE
-
+    // ANIMATION DONE
+  }
   // ADD CLASS TO HEADER ON SCROLL POS
 
   let scrollpos = window.scrollY;
