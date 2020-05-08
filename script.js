@@ -17,15 +17,15 @@ barba.init({
         // create your stunning leave animation here
         const done = this.async();
         pageTransition();
-        setTimeout(function () {
+        setTimeout(function() {
           done();
         }, 500);
       },
       enter() {
         // create your amazing enter animation here
         pageTransition2();
-      },
-    },
+      }
+    }
   ],
 
   views: [
@@ -34,10 +34,12 @@ barba.init({
       beforeLeave(data) {
         // do something before leaving the current `index` namespace
         console.log("farvel hjemskærm");
+        document.querySelector("body").classList.remove("home");
       },
       beforeEnter() {
+        document.querySelector("body").classList.add("home");
         start();
-      },
+      }
     },
     {
       namespace: "product",
@@ -49,12 +51,12 @@ barba.init({
       },
       beforeLeave(data) {
         console.log("stel out");
-      },
-    },
-  ],
+      }
+    }
+  ]
 });
 
-barba.hooks.beforeEnter((data) => {
+barba.hooks.beforeEnter(data => {
   // this hook will be called during every transitions
   // before new page content enter…
   console.log("skifter side");
@@ -66,7 +68,7 @@ function start() {
 
   loadBurger();
 
-  setTimeout(function () {
+  setTimeout(function() {
     animation1();
     animation2();
     animation3();
@@ -89,7 +91,7 @@ function start() {
     const scene = new ScrollMagic.Scene({
       triggerElement: ".animate-me",
       triggerHook: 1, // "onLeave", 0-1
-      duration: "100%",
+      duration: "100%"
     })
       // .setPin(".canvas")
       .setTween(tl)
@@ -109,7 +111,7 @@ function start() {
     const scene2 = new ScrollMagic.Scene({
       triggerElement: ".animate-me-2",
       triggerHook: 1,
-      duration: "100%",
+      duration: "100%"
     })
       .setTween(tl2)
       .addTo(controller2);
@@ -129,7 +131,7 @@ function start() {
     const scene3 = new ScrollMagic.Scene({
       triggerElement: ".animate-me-3",
       triggerHook: 1,
-      duration: "100%",
+      duration: "100%"
     })
       .setTween(tl3)
       .addTo(controller3);
@@ -149,7 +151,7 @@ function start() {
     const scene4 = new ScrollMagic.Scene({
       triggerElement: ".animate-me-4",
       triggerHook: 1,
-      duration: "100%",
+      duration: "100%"
     })
       .setTween(tl4)
       .addTo(controller4);
@@ -165,7 +167,7 @@ function start() {
   const add_class_on_scroll = () => header.classList.add("scrolled-header");
   const remove_class_on_scroll = () => header.classList.remove("scrolled-header");
 
-  window.addEventListener("scroll", function () {
+  window.addEventListener("scroll", function() {
     scrollpos = window.scrollY;
 
     if (scrollpos >= 1) {
