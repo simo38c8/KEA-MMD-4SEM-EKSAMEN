@@ -17,15 +17,15 @@ barba.init({
         // create your stunning leave animation here
         const done = this.async();
         pageTransition();
-        setTimeout(function() {
+        setTimeout(function () {
           done();
         }, 500);
       },
       enter() {
         // create your amazing enter animation here
         pageTransition2();
-      }
-    }
+      },
+    },
   ],
 
   views: [
@@ -37,7 +37,7 @@ barba.init({
       },
       beforeEnter() {
         start();
-      }
+      },
     },
     {
       namespace: "product",
@@ -49,12 +49,12 @@ barba.init({
       },
       beforeLeave(data) {
         console.log("stel out");
-      }
-    }
-  ]
+      },
+    },
+  ],
 });
 
-barba.hooks.beforeEnter(data => {
+barba.hooks.beforeEnter((data) => {
   // this hook will be called during every transitions
   // before new page content enter…
   console.log("skifter side");
@@ -66,13 +66,21 @@ function start() {
 
   loadBurger();
 
-  setTimeout(function() {
+  setTimeout(function () {
     animation1();
     animation2();
     animation3();
     animation4();
+    addInstascript();
   }, 1000);
 
+  function addInstascript() {
+    document.querySelector(".instafeed").innerHTML = "";
+
+    document.querySelector(
+      ".instafeed"
+    ).innerHTML = ` <iframe class="instagram-media instagram-media-rendered" id="instagram-embed-0"  src="https://www.instagram.com/p/B4KlynDh-g7/embed/captioned/?cr=1&amp;v=12&amp;wp=687&amp;rd=http%3A%2F%2Flocalhost%3A1234&amp;rp=%2Findex.html#%7B%22ci%22%3A0%2C%22os%22%3A479.83000008389354%2C%22ls%22%3A445.70000004023314%2C%22le%22%3A447.5050000473857%7D" allowtransparency="true" allowfullscreen="true" frameborder="0" height="845" data-instgrm-payload-id="instagram-media-payload-0" scrolling="no" style="background: white; max-width: 550px; width: calc(100% - 2px); border-radius: 3px; border: 1px solid rgb(219, 219, 219); box-shadow: none; display: block; margin: 0px 0px 12px; min-width: 326px; padding: 0px;"></iframe> <iframe class="instagram-media instagram-media-rendered" id="instagram-embed-1" src="https://www.instagram.com/p/B26LJT_hdLT/embed/captioned/?cr=1&amp;v=12&amp;wp=533&amp;rd=http%3A%2F%2Flocalhost%3A1234&amp;rp=%2Findex.html#%7B%22ci%22%3A1%2C%22os%22%3A620.4250000882894%2C%22ls%22%3A383.34000017493963%2C%22le%22%3A394.9200001079589%7D" allowtransparency="true" allowfullscreen="true" frameborder="0" height="870" data-instgrm-payload-id="instagram-media-payload-1" scrolling="no" style="background: white; max-width: 550px; width: calc(100% - 2px); border-radius: 3px; border: 1px solid rgb(219, 219, 219); box-shadow: none; display: block; margin: 0px 0px 12px; min-width: 326px; padding: 0px;"></iframe>`;
+  }
   function animation1() {
     let tl = new TimelineMax();
     const controller = new ScrollMagic.Controller();
@@ -81,7 +89,7 @@ function start() {
     const scene = new ScrollMagic.Scene({
       triggerElement: ".animate-me",
       triggerHook: 1, // "onLeave", 0-1
-      duration: "100%"
+      duration: "100%",
     })
       // .setPin(".canvas")
       .setTween(tl)
@@ -101,7 +109,7 @@ function start() {
     const scene2 = new ScrollMagic.Scene({
       triggerElement: ".animate-me-2",
       triggerHook: 1,
-      duration: "100%"
+      duration: "100%",
     })
       .setTween(tl2)
       .addTo(controller2);
@@ -121,7 +129,7 @@ function start() {
     const scene3 = new ScrollMagic.Scene({
       triggerElement: ".animate-me-3",
       triggerHook: 1,
-      duration: "100%"
+      duration: "100%",
     })
       .setTween(tl3)
       .addTo(controller3);
@@ -141,7 +149,7 @@ function start() {
     const scene4 = new ScrollMagic.Scene({
       triggerElement: ".animate-me-4",
       triggerHook: 1,
-      duration: "100%"
+      duration: "100%",
     })
       .setTween(tl4)
       .addTo(controller4);
@@ -157,7 +165,7 @@ function start() {
   const add_class_on_scroll = () => header.classList.add("scrolled-header");
   const remove_class_on_scroll = () => header.classList.remove("scrolled-header");
 
-  window.addEventListener("scroll", function() {
+  window.addEventListener("scroll", function () {
     scrollpos = window.scrollY;
 
     if (scrollpos >= 1) {
