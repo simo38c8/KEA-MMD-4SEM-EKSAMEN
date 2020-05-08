@@ -184,10 +184,12 @@ function start() {
         menuBtn.classList.add("open");
         menuOpen = true;
         mobileMenu.style.display = "block";
+        mobileMenu.classList.add("menu-transition");
         desktopHeader.style.display = "none";
       } else {
         menuBtn.classList.remove("open");
         menuOpen = false;
+        mobileMenu.classList.remove("menu-transition");
         mobileMenu.style.display = "none";
         desktopHeader.style.display = "block";
       }
