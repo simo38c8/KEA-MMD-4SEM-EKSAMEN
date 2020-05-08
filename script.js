@@ -64,6 +64,8 @@ function start() {
   console.log("start kaldes");
   //ANIMATION NUMMER 1
 
+  loadBurger();
+
   setTimeout(function() {
     animation1();
     animation2();
@@ -167,6 +169,30 @@ function start() {
 
     // console.log(scrollpos);
   });
+
+  function loadBurger() {
+    // https://codepen.io/StevenBarnes/pen/YzPbmjM
+
+    const menuBtn = document.querySelector(".menu-btn");
+    const mobileMenu = document.querySelector(".mobile-menu");
+    const desktopHeader = document.querySelector("header");
+
+    let menuOpen = false;
+
+    menuBtn.addEventListener("click", () => {
+      if (!menuOpen) {
+        menuBtn.classList.add("open");
+        menuOpen = true;
+        mobileMenu.style.display = "block";
+        desktopHeader.style.display = "none";
+      } else {
+        menuBtn.classList.remove("open");
+        menuOpen = false;
+        mobileMenu.style.display = "none";
+        desktopHeader.style.display = "block";
+      }
+    });
+  }
 
   // HEADER CLASS DONE
 }
