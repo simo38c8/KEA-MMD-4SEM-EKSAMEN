@@ -78,7 +78,7 @@ body {
   }
 }
 
-@media screen and (min-width: 600px) {
+@media screen and (min-width: 767px) {
   .stel-row {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -124,4 +124,54 @@ body {
 
 .stel-container {
   padding-top: 100px;
+}
+
+@media screen and (max-width: 767px) {
+  .stel-row:nth-child(even) .stel-image {
+    grid-area: one;
+    grid-column: 2/3;
+    justify-self: left;
+  }
+
+  .stel-row:nth-child(even) .stel-info {
+    grid-area: two;
+    grid-column: 1/2;
+    justify-self: end;
+  }
+
+  .stel-row .stel-info {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: 40px 75px auto;
+    text-align: left;
+
+    padding: 20px;
+    max-width: 100%;
+
+    .btn-stel {
+      justify-self: left;
+      margin-left: 30px;
+    }
+  }
+
+  .stel-row:nth-child(even) .stel-info {
+    grid-area: one;
+    grid-column: 1/2;
+    text-align: left;
+    justify-self: left;
+
+    .btn-stel {
+      grid-column: 2/3;
+      grid-row: 2/3;
+    }
+
+    .stel-stats {
+      grid-column: 1/2;
+      grid-row: 2/3;
+    }
+  }
+
+  .stel-row:nth-child(odd) .stel-image {
+    justify-self: center;
+  }
 }

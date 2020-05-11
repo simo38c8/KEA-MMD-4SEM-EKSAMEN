@@ -328,6 +328,10 @@ header {
     width: 100%;
   }
 
+  header nav img {
+    margin-left: 35px;
+  }
+
   header.scrolled-header nav img {
     margin-left: 35px;
   }
@@ -353,5 +357,14 @@ header {
 
   .menu-btn {
     display: block;
+  }
+}
+
+@media screen and (max-width: 501px) {
+  .home header nav a img,
+  .home header.scrolled-header nav a img,
+  header nav a img,
+  header.scrolled-header nav a img {
+    margin: 0 0 0 30px;
   }
 }
