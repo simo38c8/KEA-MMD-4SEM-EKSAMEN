@@ -30,6 +30,7 @@
 
       a {
         margin: 2px 0 0 10px;
+        text-decoration: none;
       }
 
       .fb-icon::before {
@@ -134,7 +135,7 @@ header {
 
     display: flex;
     align-items: center;
-    max-width: 500px;
+    max-width: 600px;
     height: 100px;
 
     a img {
@@ -159,7 +160,7 @@ header {
         font-family: "Font Awesome 5 Brands";
         font-weight: 900;
         font-size: 18px;
-        color: #333;
+        color: #fff;
       }
 
       .insta-icon::before {
@@ -167,7 +168,7 @@ header {
         font-family: "Font Awesome 5 Brands";
         font-weight: 900;
         font-size: 18px;
-        color: #333;
+        color: #fff;
       }
 
       .fb-icon:hover::before {
@@ -196,7 +197,7 @@ header {
           text-decoration: none;
           color: #fff;
           font-weight: 800;
-          font-size: 18px;
+          font-size: 22px;
           z-index: 1;
         }
       }

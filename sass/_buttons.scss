@@ -22,6 +22,32 @@ span.btn a:hover {
   box-shadow: 0 0 0 0 $yellow;
 }
 
+// RESERVER KNAP
+
+span.btn-stel {
+  display: block;
+}
+
+span.btn-stel a {
+  text-decoration: none;
+  text-transform: uppercase;
+  color: #333;
+  font-size: 14px;
+  padding: 4px 25px 5px;
+  position: relative;
+  border: 2px solid $yellow;
+  display: inline-block;
+  transition: all 0.2s ease-out;
+  box-shadow: 3px 3px 0 0 #333;
+  font-weight: 600;
+}
+
+span.btn-stel a:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 0 0 0 0 #333;
+  color: $yellow;
+}
+
 // BURGER MENU
 
 .menu-btn {
