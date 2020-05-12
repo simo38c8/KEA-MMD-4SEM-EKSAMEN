@@ -1,84 +1,58 @@
 import barba from "@barba/core";
 
-function pageTransition() {
-  let tl = new TimelineMax();
-  tl.to(".loading-screen", 0.5, { scaleY: 1, transformOrigin: "top right" });
-}
-
-function pageTransition2() {
-  let tl = new TimelineMax();
-  tl.to(".loading-screen", 0.5, {
-    scaleY: 0,
-    skewX: 0,
-    transformOrigin: "top right",
-    ease: "power1.out",
-    delay: 1
-  });
-}
 barba.init({
   transitions: [
     {
       name: "default-transition",
       leave() {
-        // create your stunning leave animation here
         const done = this.async();
         pageTransition();
-        setTimeout(function() {
+        function pageTransition() {
+          let tl = new TimelineMax();
+          tl.to(".loading-screen", 0.5, { scaleY: 1, transformOrigin: "top right" });
+        }
+        setTimeout(function () {
           done();
         }, 500);
       },
       enter() {
-        // create your amazing enter animation here
         pageTransition2();
-      }
-    }
+        function pageTransition2() {
+          let tl = new TimelineMax();
+          tl.to(".loading-screen", 0.5, {
+            scaleY: 0,
+            skewX: 0,
+            transformOrigin: "top right",
+            ease: "power1.out",
+            delay: 1,
+          });
+        }
+      },
+    },
   ],
 
   views: [
     {
       namespace: "home",
       beforeLeave(data) {
-        // do something before leaving the current `index` namespace
-        console.log("farvel hjemskærm");
         document.querySelector("body").classList.remove("home");
       },
       beforeEnter() {
         document.querySelector("body").classList.add("home");
-        start();
-      }
+        indexScript();
+      },
     },
     {
       namespace: "product",
       beforeEnter(data) {
-        // do something before entering the `contact` namespace
-        console.log("goddag stel skærm");
-
-        start();
+        stelScript();
       },
-      beforeLeave(data) {
-        console.log("stel out");
-      }
     },
-    {
-      namespace: "reparationer",
-      beforeEnter(data) {
-        start();
-      }
-    }
-  ]
+  ],
 });
 
-barba.hooks.enter(() => {
-  window.scrollTo(0, 0);
-});
-
-function start() {
-  console.log("start kaldes");
-  //ANIMATION NUMMER 1
-
-  loadBurger();
-
-  setTimeout(function() {
+function indexScript() {
+  setTimeout(function () {
     animation1();
     animation2();
     animation3();
@@ -101,7 +75,7 @@ function start() {
     const scene = new ScrollMagic.Scene({
       triggerElement: ".animate-me",
       triggerHook: 1, // "onLeave", 0-1
-      duration: "100%"
+      duration: "100%",
     })
       // .setPin(".canvas")
       .setTween(tl)
@@ -111,7 +85,7 @@ function start() {
 
   function animation2() {
     //ANIMATION NUMMER 2
-    console.log("animation 2");
+
     let tl2 = new TimelineMax();
 
     const controller2 = new ScrollMagic.Controller();
@@ -121,7 +95,7 @@ function start() {
     const scene2 = new ScrollMagic.Scene({
       triggerElement: ".animate-me-2",
       triggerHook: 1,
-      duration: "100%"
+      duration: "100%",
     })
       .setTween(tl2)
       .addTo(controller2);
@@ -141,7 +115,7 @@ function start() {
     const scene3 = new ScrollMagic.Scene({
       triggerElement: ".animate-me-3",
       triggerHook: 1,
-      duration: "100%"
+      duration: "100%",
     })
       .setTween(tl3)
       .addTo(controller3);
@@ -161,60 +135,124 @@ function start() {
     const scene4 = new ScrollMagic.Scene({
       triggerElement: ".animate-me-4",
       triggerHook: 1,
-      duration: "100%"
+      duration: "100%",
     })
       .setTween(tl4)
       .addTo(controller4);
-
-    // ANIMATION DONE
   }
-  // ADD CLASS TO HEADER ON SCROLL POS
+}
 
+function stelScript() {
+  console.log("vis single funktion");
+  let stels = [];
+
+  loadWordpress();
+
+  function loadWordpress() {
+    async function getJson() {
+      let url = "http://mouad.dk/Geden/wordpress/wp-json/wp/v2/stel?per_page=100";
+      let jsonData = await fetch(url);
+      stels = await jsonData.json();
+      loadStel();
+    }
+
+    function loadStel() {
+      let dest = document.querySelector(".stel-container");
+      let temp = document.querySelector("template");
+
+      dest.innerHTML = "";
+      stels.forEach((stel) => {
+        let klon = temp.cloneNode(true).content;
+        klon.querySelector(".stel-image>img").src = stel.image.guid;
+        klon.querySelector(".stel-title").textContent = stel.title.rendered;
+        klon.querySelector(".span-size").textContent = stel.size;
+        klon.querySelector(".span-year").textContent = stel.year;
+        dest.appendChild(klon);
+        dest.lastElementChild.addEventListener("click", () => {
+          singleView(stel);
+        });
+      });
+      document.querySelectorAll(".filter").forEach((elm) => {
+        elm.addEventListener("click", filtrering);
+      });
+    }
+
+    function singleView(stel) {
+      document.querySelector(
+        "#indhold"
+      ).innerHTML = `<div class="heightramme"><div class="ramme"><img src=${stel.billede.guid} alt=${stel.title.rendered}><h2>${stel.title.rendered}</h2> <div class="rammecentrer"><p>${stel.product_text}</p> <br> <p>Størrelse: ${produkt.size}</p> <p>Pris: ${produkt.price}</p></div></div></div>`; /* Dette er hvad der skal fremgå i singleview, dette er altså hvad der skal erstattes i HTML. */
+      document.querySelector("#popup").style.display = "block"; /* "#popup" skal fjernes */
+      document.querySelector("#popup #luk").addEventListener("click", close);
+
+      function close() {
+        document.querySelector("#popup").style.display = "none";
+      }
+    }
+
+    function filtrering() {
+      filter = this.getAttribute("data-kategori");
+
+      document.querySelector("h1").textContent = this.textContent;
+      document.querySelectorAll(".filter").forEach((elm) => {
+        elm.classList.remove("valgt");
+      });
+      this.classList.add("valgt");
+      visProdukter();
+    }
+
+    getJson();
+  }
+}
+
+function scrollHeader() {
   let scrollpos = window.scrollY;
   const header = document.querySelector("header");
-  // const header_height = header.offsetHeight;
 
   const add_class_on_scroll = () => header.classList.add("scrolled-header");
   const remove_class_on_scroll = () => header.classList.remove("scrolled-header");
 
-  window.addEventListener("scroll", function() {
+  window.addEventListener("scroll", function () {
     scrollpos = window.scrollY;
 
     if (scrollpos >= 1) {
-      //  or > header_height
       add_class_on_scroll();
     } else {
       remove_class_on_scroll();
     }
-
-    // console.log(scrollpos);
   });
-
-  function loadBurger() {
-    // https://codepen.io/StevenBarnes/pen/YzPbmjM
-
-    const menuBtn = document.querySelector(".menu-btn");
-    const mobileMenu = document.querySelector(".mobile-menu");
-    const desktopHeader = document.querySelector("header");
-
-    let menuOpen = false;
-
-    menuBtn.addEventListener("click", () => {
-      if (!menuOpen) {
-        menuBtn.classList.add("open");
-        menuOpen = true;
-        mobileMenu.style.display = "block";
-        mobileMenu.classList.add("menu-transition");
-        desktopHeader.style.display = "none";
-      } else {
-        menuBtn.classList.remove("open");
-        menuOpen = false;
-        mobileMenu.classList.remove("menu-transition");
-        mobileMenu.style.display = "none";
-        desktopHeader.style.display = "block";
-      }
-    });
-  }
-
-  // HEADER CLASS DONE
 }
+
+function loadBurger() {
+  // https://codepen.io/StevenBarnes/pen/YzPbmjM
+
+  const menuBtn = document.querySelector(".menu-btn");
+  const mobileMenu = document.querySelector(".mobile-menu");
+  const desktopHeader = document.querySelector("header");
+
+  let menuOpen = false;
+
+  menuBtn.addEventListener("click", () => {
+    if (!menuOpen) {
+      menuBtn.classList.add("open");
+      menuOpen = true;
+      mobileMenu.style.display = "block";
+      mobileMenu.classList.add("menu-transition");
+      desktopHeader.style.display = "none";
+    } else {
+      menuBtn.classList.remove("open");
+      menuOpen = false;
+      mobileMenu.classList.remove("menu-transition");
+      mobileMenu.style.display = "none";
+      desktopHeader.style.display = "block";
+    }
+  });
+}
+
+scrollHeader();
+loadBurger();
+
+barba.hooks.enter(() => {
+  window.scrollTo(0, 0);
+  scrollHeader();
+  loadBurger();
+});
