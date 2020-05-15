@@ -53,6 +53,16 @@ barba.init({
       },
     },
     {
+      namespace: "om",
+      beforeEnter(data) {
+        stelScript();
+        document.querySelector("body > header > nav > ul > li:nth-child(2) > a").classList.add("current-page");
+      },
+      beforeLeave(data) {
+        document.querySelector("body > header > nav > ul > li:nth-child(2) > a").classList.remove("current-page");
+      },
+    },
+    {
       namespace: "reparationer",
       beforeEnter(data) {
         stelScript();
