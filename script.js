@@ -46,6 +46,20 @@ barba.init({
       namespace: "product",
       beforeEnter(data) {
         stelScript();
+        document.querySelector("body > header > nav > ul > li:nth-child(1) > a").classList.add("current-page");
+      },
+      beforeLeave(data) {
+        document.querySelector("body > header > nav > ul > li:nth-child(1) > a").classList.remove("current-page");
+      },
+    },
+    {
+      namespace: "reparationer",
+      beforeEnter(data) {
+        stelScript();
+        document.querySelector("body > header > nav > ul > li:nth-child(3) > a").classList.add("current-page");
+      },
+      beforeLeave(data) {
+        document.querySelector("body > header > nav > ul > li:nth-child(3) > a").classList.remove("current-page");
       },
     },
   ],
