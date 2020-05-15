@@ -52,13 +52,31 @@ barba.init({
 });
 
 function indexScript() {
+  document.querySelector(".logo").style.transition = "4s";
+  document.querySelector(".logo").classList.remove("sticky");
   setTimeout(function () {
     animation1();
     animation2();
     animation3();
     animation4();
     addInstascript();
+    indexLogoTransition();
   }, 1000);
+
+  function indexLogoTransition() {
+    var splashlogo = document.querySelector(".logo");
+
+    window.addEventListener("scroll", function () {
+      document.querySelector(".logo").style.transition = "1s";
+      console.log("scroll test");
+      let scrollpos = window.scrollY;
+      if (scrollpos >= 120) {
+        splashlogo.classList.add("sticky");
+      } else {
+        splashlogo.classList.remove("sticky");
+      }
+    });
+  }
 
   function addInstascript() {
     document.querySelector(".instafeed").innerHTML = "";
