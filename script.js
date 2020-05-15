@@ -77,7 +77,7 @@ barba.init({
 
 function indexScript() {
   document.querySelector(".logo").style.transition = "4s";
-  document.querySelector(".logo").classList.remove("sticky");
+  document.querySelector(".logo").classList.remove("hidden");
   setTimeout(function () {
     animation1();
     animation2();
@@ -95,9 +95,9 @@ function indexScript() {
       console.log("scroll test");
       let scrollpos = window.scrollY;
       if (scrollpos >= 120) {
-        splashlogo.classList.add("sticky");
+        splashlogo.classList.add("hidden");
       } else {
-        splashlogo.classList.remove("sticky");
+        splashlogo.classList.remove("hidden");
       }
     });
   }
