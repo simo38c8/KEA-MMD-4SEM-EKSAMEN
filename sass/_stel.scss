@@ -173,19 +173,19 @@
   }
 }
 
-select {
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-  padding: 5px 10px;
-  text-transform: uppercase;
-  outline: none;
-  box-sizing: border-box;
+// select {
+//   background-color: transparent;
+//   border: none;
+//   cursor: pointer;
+//   padding: 5px 10px;
+//   text-transform: uppercase;
+//   outline: none;
+//   box-sizing: border-box;
 
-  &:hover {
-    box-shadow: inset 0px 0px 0px 2px gainsboro;
-  }
-}
+//   &:hover {
+//     box-shadow: inset 0px 0px 0px 2px gainsboro;
+//   }
+// }
 
 option {
   -webkit-appearance: none;

@@ -5,14 +5,26 @@
 .om-sektion {
   display: flex;
   justify-content: center;
+  margin-bottom: 50px;
 
   .om-text {
-    max-width: 300px;
+    max-width: 250px;
     margin: 0 50px;
   }
 
   img {
-    max-width: 300px;
-    margin: 0 50px;
+    max-width: 250px;
+    // margin: 0 50px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .om-sektion {
+    flex-direction: column;
+    align-items: center;
+
+    .om-text {
+      margin: 30px 0;
+    }
   }
 }
