@@ -1,0 +1,18 @@
+.column-underside {
+  text-align: center;
+}
+
+.om-sektion {
+  display: flex;
+  justify-content: center;
+
+  .om-text {
+    max-width: 300px;
+    margin: 0 50px;
+  }
+
+  img {
+    max-width: 300px;
+    margin: 0 50px;
+  }
+}

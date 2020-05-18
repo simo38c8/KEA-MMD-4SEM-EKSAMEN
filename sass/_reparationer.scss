@@ -1,7 +1,41 @@
-#reparationer-p {
-  margin-right: 30rem;
+// #reparationer-p {
+//   margin-right: 30rem;
+// }
+// #pris-liste {
+//   width: 40vw;
+//   margin-top: 5rem;
+// }
+
+// .column-reparationer {
+//   text-align: center;
+//   max-width: 800px;
+//   margin: 0 auto;
+
+//   display: flex;
+//   justify-content: center;
+//   flex-direction: column;
+
+//   img {
+//     max-width: 600px;
+//   }
+// }
+
+.column-reparationer {
+  text-align: center;
+  max-width: 800px;
+
+  img {
+    max-width: 500px;
+    margin: 0 auto;
+  }
 }
-#pris-liste {
-  width: 40vw;
-  margin-top: 5rem;
+
+#splash-reparationer {
+  position: relative;
+  background-image: url(/assets/geden_facade.jpg);
+  background-size: cover;
+  background-position: center;
+  width: 100%;
+  height: 400px;
+  overflow: hidden;
 }
