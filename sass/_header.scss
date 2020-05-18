@@ -281,26 +281,77 @@ header {
   width: 100%;
   height: 100%;
   overflow: hidden;
-  z-index: 4;
+  z-index: 20;
 
   display: none;
+  transform: translateY(-100%);
+
+  .mobile-some {
+    position: absolute;
+    left: 50%;
+    bottom: 5%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    width: 100px;
+
+    display: flex;
+    justify-content: space-around;
+
+    a {
+      text-decoration: none;
+    }
+
+    .fb-icon::before {
+      content: "\f082";
+      font-family: "Font Awesome 5 Brands";
+      font-weight: 900;
+      font-size: 40px;
+      color: #333;
+    }
+
+    .insta-icon::before {
+      content: "\f16d";
+      font-family: "Font Awesome 5 Brands";
+      font-weight: 900;
+      font-size: 40px;
+      color: #333;
+    }
+  }
+}
+
+.menu-transition {
+  transform: translateY(0%);
+  transition: 500ms ease-in;
 }
 
 .mobile-menu-inner-container {
   position: absolute;
   left: 50%;
-  transform: translateX(-50%);
-  top: 30%;
+  top: 20%;
 
-  width: 100%;
-  height: 300px;
+  width: 400px;
+  height: 400px;
   background-color: #333;
   border-radius: 50%;
-}
+  transform: translateX(-50%);
 
-.menu-transition {
-  transform: translateX(0%);
-  transition: transform 6s;
+  ul {
+    position: absolute;
+    left: 50%;
+    top: 10%;
+    transform: translateX(-50%);
+    list-style: none;
+
+    li {
+      margin: 10px 0;
+
+      a {
+        color: #fff;
+        text-decoration: none;
+        font-size: 40px;
+      }
+    }
+  }
 }
 
 @media screen and (max-width: 767px) {
