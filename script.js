@@ -88,10 +88,10 @@ function indexScript() {
   }, 1000);
 
   function indexLogoTransition() {
-    var splashlogo = document.querySelector(".logo");
+    const splashlogo = document.querySelector(".logo");
 
     window.addEventListener("scroll", function() {
-      document.querySelector(".logo").style.transition = "1s";
+      splashlogo.style.transition = "1s";
       console.log("scroll test");
       let scrollpos = window.scrollY;
       if (scrollpos >= 120) {
