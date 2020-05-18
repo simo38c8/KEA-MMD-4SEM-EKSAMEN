@@ -11,6 +11,13 @@ $text-padding: 20px;
 
 /* Loading Screen Styling */
 
+body {
+  background-color: #fff;
+  margin: 0;
+  padding: 0;
+  // font-family: eurostile-condensed, sans-serif;
+}
+
 .loading-screen {
   position: relative;
   padding-left: 0;
