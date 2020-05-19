@@ -83,3 +83,12 @@
     text-align: left;
   }
 }
+
+// Safari Mediaquery //
+@media not all and (min-resolution: 0.001dpcm) {
+  @supports (-webkit-appearance: none) {
+    #cykel {
+      display: none;
+    }
+  }
+}
