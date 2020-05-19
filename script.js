@@ -55,7 +55,6 @@ barba.init({
     {
       namespace: "om",
       beforeEnter(data) {
-        stelScript();
         document.querySelector("body > header > nav > ul > li:nth-child(2) > a").classList.add("current-page");
       },
       beforeLeave(data) {
@@ -65,7 +64,6 @@ barba.init({
     {
       namespace: "reparationer",
       beforeEnter(data) {
-        stelScript();
         document.querySelector("body > header > nav > ul > li:nth-child(3) > a").classList.add("current-page");
       },
       beforeLeave(data) {
