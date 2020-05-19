@@ -14,7 +14,7 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    max-width: 500px;
+    max-width: 550px;
     height: 100px;
 
     a img {
@@ -72,8 +72,9 @@
           font-size: 18px;
           color: #333;
           background-color: transparent;
-          padding: 0;
+          padding: 0 0 3px 0;
           border-radius: 0px;
+          font-weight: 600;
 
           &:hover {
             background-color: #fff;
@@ -101,7 +102,7 @@ header.scrolled-header {
     display: flex;
     flex-direction: row;
     align-items: center;
-    max-width: 500px;
+    max-width: 550px;
     height: 100px;
 
     a img {
@@ -121,6 +122,8 @@ header.scrolled-header {
         a {
           font-size: 18px;
           color: #333;
+          font-weight: 600;
+          padding: 0 0 3px 0;
         }
       }
     }
@@ -206,9 +209,10 @@ header {
         a {
           text-decoration: none;
           color: #333;
-          font-weight: 800;
+          font-weight: 600;
           font-size: 22px;
           z-index: 1;
+          padding: 0 0 3px 0;
         }
       }
     }
@@ -338,9 +342,10 @@ header {
   ul {
     position: absolute;
     left: 50%;
-    top: 10%;
-    transform: translateX(-50%);
+    top: 15%;
+    transform: translateX(-45%);
     list-style: none;
+    width: 230px;
 
     li {
       margin: 10px 0;
@@ -348,7 +353,7 @@ header {
       a {
         color: #fff;
         text-decoration: none;
-        font-size: 40px;
+        font-size: 35px;
       }
     }
   }
@@ -404,5 +409,5 @@ header {
 }
 
 .current-page {
-  border-bottom: 2px solid black;
+  border-bottom: 1px solid #333;
 }
