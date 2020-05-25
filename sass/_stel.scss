@@ -1,6 +1,5 @@
 #splash-stel {
   position: relative;
-  // top: 80px;
   background-image: url(/assets/stel.JPG);
   background-size: cover;
   background-position: bottom;
@@ -16,7 +15,6 @@
 .stel-container {
   max-width: 1140px;
   margin: 0 auto;
-  // background-color: #f5f5f5;
   position: relative;
 }
 
@@ -27,7 +25,6 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 40px 75px auto;
-
     padding: 0 20px;
     max-width: 400px;
 
@@ -65,7 +62,6 @@
   }
 
   .stel-image {
-    // width: 100%;
     padding: 0 20px;
     img {
       width: auto;
@@ -172,20 +168,6 @@
     justify-self: center;
   }
 }
-
-// select {
-//   background-color: transparent;
-//   border: none;
-//   cursor: pointer;
-//   padding: 5px 10px;
-//   text-transform: uppercase;
-//   outline: none;
-//   box-sizing: border-box;
-
-//   &:hover {
-//     box-shadow: inset 0px 0px 0px 2px gainsboro;
-//   }
-// }
 
 option {
   -webkit-appearance: none;

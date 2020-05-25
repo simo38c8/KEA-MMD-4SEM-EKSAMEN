@@ -62,7 +62,6 @@ span.btn-stel a:hover {
   height: 40px;
   cursor: pointer;
   transition: all 0.5s ease-in-out;
-  /*   border: 3px solid #555;    */
   background: #555;
   z-index: 1000;
 }
@@ -70,7 +69,7 @@ span.btn-stel a:hover {
 header.scrolled-header .menu-btn {
   position: unset;
 }
-/* This creates the middle line */
+
 .menu-btn__burger {
   width: 25px;
   height: 3px;
@@ -79,7 +78,6 @@ header.scrolled-header .menu-btn {
   transition: all 0.5s ease-in-out;
 }
 
-/* This creates the top and bottom lines but it does not position them */
 .menu-btn__burger::before,
 .menu-btn__burger::after {
   content: "";
@@ -91,7 +89,6 @@ header.scrolled-header .menu-btn {
   transition: all 0.5s ease-in-out;
 }
 
-/* This positions the top and bottom lines */
 .menu-btn__burger::before {
   transform: translateY(-8px);
 }
@@ -100,7 +97,7 @@ header.scrolled-header .menu-btn {
   transform: translateY(8px);
 }
 
-/* Animation */
+/* Burger menun Animation */
 .menu-btn.open .menu-btn__burger {
   transform: translateX(-25px);
   background: transparent;

@@ -1,23 +1,21 @@
-$test: aquamarine;
-
-body {
-  background-color: $test;
-}
-
 $white-background: #fff;
 $yellow: #ffc600;
-
 $text-padding: 20px;
-
-/* Loading Screen Styling */
 
 body {
   background-color: #fff;
   margin: 0;
   padding: 0;
-  // font-family: eurostile-condensed, sans-serif;
+}
+::selection {
+  background-color: $yellow;
 }
 
+.body:not(.home) .column {
+  margin-top: 150px;
+}
+
+/* Loading Screen Styling */
 .loading-screen {
   position: relative;
   padding-left: 0;
@@ -42,19 +40,3 @@ body {
 }
 
 /* Loading Screen Styling Ends */
-
-::selection {
-  background-color: $yellow;
-}
-
-.body:not(.home) .column {
-  margin-top: 150px;
-}
-
-@media not all and (min-resolution: 0.001dpcm) {
-  @supports (-webkit-appearance: none) {
-    #cykel {
-      display: none;
-    }
-  }
-}

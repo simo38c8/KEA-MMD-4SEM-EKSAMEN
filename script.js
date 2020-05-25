@@ -90,7 +90,7 @@ function indexScript() {
 
     window.addEventListener("scroll", function () {
       splashlogo.style.transition = "1s";
-      console.log("scroll test");
+
       let scrollpos = window.scrollY;
       if (scrollpos >= 120) {
         splashlogo.classList.add("hidden");
@@ -117,10 +117,10 @@ function indexScript() {
       triggerHook: 1, // "onLeave", 0-1
       duration: "100%",
     })
-      // .setPin(".canvas")
+    
       .setTween(tl)
       .addTo(controller);
-    // .addIndicators();
+
   }
 
   function animation2() {
