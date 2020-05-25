@@ -9,7 +9,10 @@ barba.init({
         pageTransition();
         function pageTransition() {
           let tl = new TimelineMax();
-          tl.to(".loading-screen", 0.5, { scaleY: 1, transformOrigin: "top right" });
+          tl.to(".loading-screen", 0.5, {
+            scaleY: 1,
+            transformOrigin: "top right",
+          });
         }
         setTimeout(function () {
           done();
@@ -46,28 +49,40 @@ barba.init({
       namespace: "product",
       beforeEnter(data) {
         stelScript();
-        document.querySelector("body > header > nav > ul > li:nth-child(1) > a").classList.add("current-page");
+        document
+          .querySelector("body > header > nav > ul > li:nth-child(1) > a")
+          .classList.add("current-page");
       },
       beforeLeave(data) {
-        document.querySelector("body > header > nav > ul > li:nth-child(1) > a").classList.remove("current-page");
+        document
+          .querySelector("body > header > nav > ul > li:nth-child(1) > a")
+          .classList.remove("current-page");
       },
     },
     {
       namespace: "om",
       beforeEnter(data) {
-        document.querySelector("body > header > nav > ul > li:nth-child(2) > a").classList.add("current-page");
+        document
+          .querySelector("body > header > nav > ul > li:nth-child(2) > a")
+          .classList.add("current-page");
       },
       beforeLeave(data) {
-        document.querySelector("body > header > nav > ul > li:nth-child(2) > a").classList.remove("current-page");
+        document
+          .querySelector("body > header > nav > ul > li:nth-child(2) > a")
+          .classList.remove("current-page");
       },
     },
     {
       namespace: "reparationer",
       beforeEnter(data) {
-        document.querySelector("body > header > nav > ul > li:nth-child(3) > a").classList.add("current-page");
+        document
+          .querySelector("body > header > nav > ul > li:nth-child(3) > a")
+          .classList.add("current-page");
       },
       beforeLeave(data) {
-        document.querySelector("body > header > nav > ul > li:nth-child(3) > a").classList.remove("current-page");
+        document
+          .querySelector("body > header > nav > ul > li:nth-child(3) > a")
+          .classList.remove("current-page");
       },
     },
   ],
@@ -190,10 +205,29 @@ function stelScript() {
 
   function loadWordpress() {
     async function getJson() {
-      let url = "https://mouad.dk/Geden/wordpress/wp-json/wp/v2/stel?per_page=100";
+      let url =
+        "https://mouad.dk/Geden/wordpress/wp-json/wp/v2/stel?per_page=100";
       let jsonData = await fetch(url);
       stels = await jsonData.json();
       loadStel();
+    }
+
+    let filter = "all";
+
+    document.querySelectorAll(".filter").forEach((knap) => {
+      knap.addEventListener("click", filtrering);
+    });
+
+    function filtrering() {
+      document.querySelectorAll(".filter").forEach((knap) => {
+        knap.classList.remove("valgt");
+      });
+      this.classList.add("valgt");
+
+      filter = this.getAttribute("data-hold");
+      loadStel();
+      console.log(filter);
+      //filtrering iforhold til hus
     }
 
     function loadStel() {
@@ -202,18 +236,18 @@ function stelScript() {
 
       dest.innerHTML = "";
       stels.forEach((stel) => {
-        let klon = temp.cloneNode(true).content;
-        klon.querySelector(".stel-image>img").src = stel.image.guid;
-        klon.querySelector(".stel-title").textContent = stel.title.rendered;
-        klon.querySelector(".span-size").textContent = stel.size;
-        klon.querySelector(".span-year").textContent = stel.year;
-        dest.appendChild(klon);
+        if (filter == "all" || stel.year == filter) {
+          let klon = temp.cloneNode(true).content;
+          klon.querySelector(".stel-image>img").src = stel.image.guid;
+          klon.querySelector(".stel-title").textContent = stel.title.rendered;
+          klon.querySelector(".span-size").textContent = stel.size;
+          klon.querySelector(".span-year").textContent = stel.year;
+
+          dest.appendChild(klon);
+        }
         dest.lastElementChild.addEventListener("click", () => {
           singleView(stel);
         });
-      });
-      document.querySelectorAll(".filter").forEach((elm) => {
-        elm.addEventListener("click", filtrering);
       });
     }
 
@@ -221,23 +255,13 @@ function stelScript() {
       document.querySelector(
         "#indhold"
       ).innerHTML = `<div class="heightramme"><div class="ramme"><img src=${stel.billede.guid} alt=${stel.title.rendered}><h2>${stel.title.rendered}</h2> <div class="rammecentrer"><p>${stel.product_text}</p> <br> <p>Størrelse: ${produkt.size}</p> <p>Pris: ${produkt.price}</p></div></div></div>`; /* Dette er hvad der skal fremgå i singleview, dette er altså hvad der skal erstattes i HTML. */
-      document.querySelector("#popup").style.display = "block"; /* "#popup" skal fjernes */
+      document.querySelector("#popup").style.display =
+        "block"; /* "#popup" skal fjernes */
       document.querySelector("#popup #luk").addEventListener("click", close);
 
       function close() {
         document.querySelector("#popup").style.display = "none";
       }
-    }
-
-    function filtrering() {
-      filter = this.getAttribute("data-kategori");
-
-      document.querySelector("h1").textContent = this.textContent;
-      document.querySelectorAll(".filter").forEach((elm) => {
-        elm.classList.remove("valgt");
-      });
-      this.classList.add("valgt");
-      visProdukter();
     }
 
     getJson();
@@ -249,7 +273,8 @@ function scrollHeader() {
   const header = document.querySelector("header");
 
   const add_class_on_scroll = () => header.classList.add("scrolled-header");
-  const remove_class_on_scroll = () => header.classList.remove("scrolled-header");
+  const remove_class_on_scroll = () =>
+    header.classList.remove("scrolled-header");
 
   window.addEventListener("scroll", function () {
     scrollpos = window.scrollY;
