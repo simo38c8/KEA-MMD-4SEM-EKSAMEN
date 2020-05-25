@@ -367,7 +367,7 @@ header {
     width: 100%;
   }
 
-  header nav img {
+  header nav a img {
     margin-left: 35px;
   }
 
@@ -405,6 +405,24 @@ header {
   header nav a img,
   header.scrolled-header nav a img {
     margin: 0 0 0 30px;
+  }
+
+  .mobile-menu-inner-container {
+    width: 300px;
+    height: 300px;
+
+    ul {
+      width: 170px;
+      li {
+        a {
+          font-size: 25px;
+        }
+      }
+    }
+  }
+
+  .mobile-menu .mobile-some {
+    bottom: 20%;
   }
 }
 

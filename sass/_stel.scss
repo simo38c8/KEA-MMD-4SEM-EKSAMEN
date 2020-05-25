@@ -10,12 +10,18 @@
 
 #filter {
   text-align: center;
+  margin: 30px 0 0 0;
 }
 
 .stel-container {
   max-width: 1140px;
   margin: 0 auto;
   position: relative;
+}
+
+.stel-intro {
+  max-width: 600px;
+  margin: 30px auto 0;
 }
 
 .stel-row {
@@ -116,7 +122,7 @@
 }
 
 .stel-container {
-  padding-top: 100px;
+  padding-top: 50px;
 }
 
 @media screen and (max-width: 767px) {

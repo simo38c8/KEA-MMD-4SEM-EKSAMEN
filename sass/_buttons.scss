@@ -62,12 +62,16 @@ span.btn-stel a:hover {
   height: 40px;
   cursor: pointer;
   transition: all 0.5s ease-in-out;
-  background: #555;
+  background: #333;
   z-index: 1000;
 }
 
 header.scrolled-header .menu-btn {
   position: unset;
+}
+
+.burger-scroll {
+  top: 50px;
 }
 
 .menu-btn__burger {

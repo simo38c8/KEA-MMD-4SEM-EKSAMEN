@@ -11,7 +11,7 @@ barba.init({
           let tl = new TimelineMax();
           tl.to(".loading-screen", 0.5, { scaleY: 1, transformOrigin: "top right" });
         }
-        setTimeout(function () {
+        setTimeout(function() {
           done();
         }, 500);
       },
@@ -24,11 +24,11 @@ barba.init({
             skewX: 0,
             transformOrigin: "top right",
             ease: "power1.out",
-            delay: 1,
+            delay: 1
           });
         }
-      },
-    },
+      }
+    }
   ],
 
   views: [
@@ -40,7 +40,7 @@ barba.init({
       beforeEnter() {
         document.querySelector("body").classList.add("home");
         indexScript();
-      },
+      }
     },
     {
       namespace: "product",
@@ -50,7 +50,7 @@ barba.init({
       },
       beforeLeave(data) {
         document.querySelector("body > header > nav > ul > li:nth-child(1) > a").classList.remove("current-page");
-      },
+      }
     },
     {
       namespace: "om",
@@ -59,7 +59,7 @@ barba.init({
       },
       beforeLeave(data) {
         document.querySelector("body > header > nav > ul > li:nth-child(2) > a").classList.remove("current-page");
-      },
+      }
     },
     {
       namespace: "reparationer",
@@ -68,15 +68,15 @@ barba.init({
       },
       beforeLeave(data) {
         document.querySelector("body > header > nav > ul > li:nth-child(3) > a").classList.remove("current-page");
-      },
-    },
-  ],
+      }
+    }
+  ]
 });
 
 function indexScript() {
   document.querySelector(".logo").style.transition = "2s";
   document.querySelector(".logo").classList.remove("hidden");
-  setTimeout(function () {
+  setTimeout(function() {
     animation1();
     animation2();
     animation3();
@@ -88,7 +88,7 @@ function indexScript() {
   function indexLogoTransition() {
     const splashlogo = document.querySelector(".logo");
 
-    window.addEventListener("scroll", function () {
+    window.addEventListener("scroll", function() {
       splashlogo.style.transition = "1s";
 
       let scrollpos = window.scrollY;
@@ -115,12 +115,11 @@ function indexScript() {
     const scene = new ScrollMagic.Scene({
       triggerElement: ".animate-me",
       triggerHook: 1, // "onLeave", 0-1
-      duration: "100%",
+      duration: "100%"
     })
-    
+
       .setTween(tl)
       .addTo(controller);
-
   }
 
   function animation2() {
@@ -135,7 +134,7 @@ function indexScript() {
     const scene2 = new ScrollMagic.Scene({
       triggerElement: ".animate-me-2",
       triggerHook: 1,
-      duration: "100%",
+      duration: "100%"
     })
       .setTween(tl2)
       .addTo(controller2);
@@ -155,7 +154,7 @@ function indexScript() {
     const scene3 = new ScrollMagic.Scene({
       triggerElement: ".animate-me-3",
       triggerHook: 1,
-      duration: "100%",
+      duration: "100%"
     })
       .setTween(tl3)
       .addTo(controller3);
@@ -175,7 +174,7 @@ function indexScript() {
     const scene4 = new ScrollMagic.Scene({
       triggerElement: ".animate-me-4",
       triggerHook: 1,
-      duration: "100%",
+      duration: "100%"
     })
       .setTween(tl4)
       .addTo(controller4);
@@ -201,7 +200,7 @@ function stelScript() {
       let temp = document.querySelector("template");
 
       dest.innerHTML = "";
-      stels.forEach((stel) => {
+      stels.forEach(stel => {
         let klon = temp.cloneNode(true).content;
         klon.querySelector(".stel-image>img").src = stel.image.guid;
         klon.querySelector(".stel-title").textContent = stel.title.rendered;
@@ -212,7 +211,7 @@ function stelScript() {
           singleView(stel);
         });
       });
-      document.querySelectorAll(".filter").forEach((elm) => {
+      document.querySelectorAll(".filter").forEach(elm => {
         elm.addEventListener("click", filtrering);
       });
     }
@@ -233,7 +232,7 @@ function stelScript() {
       filter = this.getAttribute("data-kategori");
 
       document.querySelector("h1").textContent = this.textContent;
-      document.querySelectorAll(".filter").forEach((elm) => {
+      document.querySelectorAll(".filter").forEach(elm => {
         elm.classList.remove("valgt");
       });
       this.classList.add("valgt");
@@ -247,17 +246,20 @@ function stelScript() {
 function scrollHeader() {
   let scrollpos = window.scrollY;
   const header = document.querySelector("header");
+  const burgerBtn = document.querySelector(".menu-btn");
 
   const add_class_on_scroll = () => header.classList.add("scrolled-header");
   const remove_class_on_scroll = () => header.classList.remove("scrolled-header");
 
-  window.addEventListener("scroll", function () {
+  window.addEventListener("scroll", function() {
     scrollpos = window.scrollY;
 
     if (scrollpos >= 1) {
       add_class_on_scroll();
+      burgerBtn.classList.remove("burger-scroll");
     } else {
       remove_class_on_scroll();
+      burgerBtn.classList.add("burger-scroll");
     }
   });
 }
@@ -280,7 +282,7 @@ function loadBurger() {
       menuOpen = true;
       mobileMenu.style.display = "block";
 
-      setTimeout(function () {
+      setTimeout(function() {
         mobileMenu.classList.add("menu-transition");
       }, 500);
 
@@ -298,7 +300,7 @@ function loadBurger() {
   // ON PAGE LEAVE
 
   barba.hooks.leave(() => {
-    setTimeout(function () {
+    setTimeout(function() {
       mobileMenu.style.display = "none";
       mobileMenu.classList.remove("menu-transition");
     }, 700);
@@ -313,7 +315,7 @@ scrollHeader();
 loadBurger();
 
 barba.hooks.enter(() => {
-  setTimeout(function () {
+  setTimeout(function() {
     window.scrollTo(0, 0);
   }, 300);
 
