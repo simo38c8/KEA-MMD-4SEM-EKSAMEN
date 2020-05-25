@@ -245,9 +245,9 @@ function stelScript() {
 
           dest.appendChild(klon);
         }
-        dest.lastElementChild.addEventListener("click", () => {
-          singleView(stel);
-        });
+        // dest.lastElementChild.addEventListener("click", () => {
+        //   singleView(stel);
+        // });
       });
     }
 
