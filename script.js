@@ -236,7 +236,7 @@ function stelScript() {
 
       dest.innerHTML = "";
       stels.forEach((stel) => {
-        if (filter == "all" || stel.year == filter) {
+        if (filter == "all" || stel.size == filter) {
           let klon = temp.cloneNode(true).content;
           klon.querySelector(".stel-image>img").src = stel.image.guid;
           klon.querySelector(".stel-title").textContent = stel.title.rendered;
