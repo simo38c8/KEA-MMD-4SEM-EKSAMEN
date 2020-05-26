@@ -213,9 +213,13 @@ function stelScript() {
     }
 
     let filter = "all";
+    let filter2 = "all";
 
     document.querySelectorAll(".filter").forEach((knap) => {
       knap.addEventListener("click", filtrering);
+    });
+    document.querySelectorAll(".filter2").forEach((knap) => {
+      knap.addEventListener("click", filtrering2);
     });
 
     function filtrering() {
@@ -229,6 +233,17 @@ function stelScript() {
       console.log(filter);
       //filtrering iforhold til hus
     }
+    function filtrering2() {
+      document.querySelectorAll(".filter2").forEach((knap) => {
+        knap.classList.remove("valgt");
+      });
+      this.classList.add("valgt");
+
+      filter2 = this.getAttribute("data-hold");
+      loadStel();
+      console.log(filter2);
+      //filtrering iforhold til hus
+    }
 
     function loadStel() {
       let dest = document.querySelector(".stel-container");
@@ -236,7 +251,10 @@ function stelScript() {
 
       dest.innerHTML = "";
       stels.forEach((stel) => {
-        if (filter == "all" || stel.size == filter) {
+        if (
+          (filter == "all" || stel.size == filter) &&
+          (filter2 == "all" || stel.year == filter2)
+        ) {
           let klon = temp.cloneNode(true).content;
           klon.querySelector(".stel-image>img").src = stel.image.guid;
           klon.querySelector(".stel-title").textContent = stel.title.rendered;
