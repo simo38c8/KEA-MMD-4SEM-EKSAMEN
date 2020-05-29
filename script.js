@@ -253,7 +253,7 @@ function stelScript() {
       stels.forEach((stel) => {
         if (
           (filter == "all" || stel.size == filter) &&
-          (filter2 == "all" || stel.year == filter2)
+          (filter2 == "all" || stel.tid == filter2)
         ) {
           let klon = temp.cloneNode(true).content;
           klon.querySelector(".stel-image>img").src = stel.image.guid;
@@ -262,24 +262,27 @@ function stelScript() {
           klon.querySelector(".span-year").textContent = stel.year;
 
           dest.appendChild(klon);
+
+          dest.lastElementChild.addEventListener("click", () => {
+            singleView(stel);
+          });
         }
-        // dest.lastElementChild.addEventListener("click", () => {
-        //   singleView(stel);
-        // });
       });
     }
 
     function singleView(stel) {
       document.querySelector(
         "#indhold"
-      ).innerHTML = `<div class="heightramme"><div class="ramme"><img src=${stel.billede.guid} alt=${stel.title.rendered}><h2>${stel.title.rendered}</h2> <div class="rammecentrer"><p>${stel.product_text}</p> <br> <p>Størrelse: ${produkt.size}</p> <p>Pris: ${produkt.price}</p></div></div></div>`; /* Dette er hvad der skal fremgå i singleview, dette er altså hvad der skal erstattes i HTML. */
-      document.querySelector("#popup").style.display =
-        "block"; /* "#popup" skal fjernes */
-      document.querySelector("#popup #luk").addEventListener("click", close);
-
-      function close() {
-        document.querySelector("#popup").style.display = "none";
-      }
+      ).innerHTML = `<div class="heightramme"><div class="ramme"><img src=${stel.image.guid} alt=${stel.title.rendered}><h2>${stel.title.rendered}</h2> <div class="rammecentrer"><p>${stel.om}</p> <br> <p>Størrelse: ${stel.size}</p> <p>Pris: ${stel.price}</p></div></div></div>`; /* Dette er hvad der skal fremgå i singleview, dette er altså hvad der skal erstattes i HTML. */
+      document.querySelector("#pop-op").style.display = "block";
+      document
+        .querySelector("#pop-op #lukknap")
+        .addEventListener("click", close);
+      console.log(stel);
+    }
+    function close() {
+      document.querySelector("#pop-op").style.display = "none";
+      //lukker pop-op
     }
 
     getJson();
