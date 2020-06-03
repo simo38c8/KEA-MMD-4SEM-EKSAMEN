@@ -11,10 +11,10 @@ barba.init({
           let tl = new TimelineMax();
           tl.to(".loading-screen", 0.5, {
             scaleY: 1,
-            transformOrigin: "top right",
+            transformOrigin: "top right"
           });
         }
-        setTimeout(function () {
+        setTimeout(function() {
           done();
         }, 500);
       },
@@ -27,11 +27,11 @@ barba.init({
             skewX: 0,
             transformOrigin: "top right",
             ease: "power1.out",
-            delay: 1,
+            delay: 1
           });
         }
-      },
-    },
+      }
+    }
   ],
 
   views: [
@@ -43,55 +43,43 @@ barba.init({
       beforeEnter() {
         document.querySelector("body").classList.add("home");
         indexScript();
-      },
+      }
     },
     {
       namespace: "product",
       beforeEnter(data) {
         stelScript();
-        document
-          .querySelector("body > header > nav > ul > li:nth-child(1) > a")
-          .classList.add("current-page");
+        document.querySelector("body > header > nav > ul > li:nth-child(1) > a").classList.add("current-page");
       },
       beforeLeave(data) {
-        document
-          .querySelector("body > header > nav > ul > li:nth-child(1) > a")
-          .classList.remove("current-page");
-      },
+        document.querySelector("body > header > nav > ul > li:nth-child(1) > a").classList.remove("current-page");
+      }
     },
     {
       namespace: "om",
       beforeEnter(data) {
-        document
-          .querySelector("body > header > nav > ul > li:nth-child(2) > a")
-          .classList.add("current-page");
+        document.querySelector("body > header > nav > ul > li:nth-child(2) > a").classList.add("current-page");
       },
       beforeLeave(data) {
-        document
-          .querySelector("body > header > nav > ul > li:nth-child(2) > a")
-          .classList.remove("current-page");
-      },
+        document.querySelector("body > header > nav > ul > li:nth-child(2) > a").classList.remove("current-page");
+      }
     },
     {
       namespace: "reparationer",
       beforeEnter(data) {
-        document
-          .querySelector("body > header > nav > ul > li:nth-child(3) > a")
-          .classList.add("current-page");
+        document.querySelector("body > header > nav > ul > li:nth-child(3) > a").classList.add("current-page");
       },
       beforeLeave(data) {
-        document
-          .querySelector("body > header > nav > ul > li:nth-child(3) > a")
-          .classList.remove("current-page");
-      },
-    },
-  ],
+        document.querySelector("body > header > nav > ul > li:nth-child(3) > a").classList.remove("current-page");
+      }
+    }
+  ]
 });
 
 function indexScript() {
   document.querySelector(".logo").style.transition = "2s";
   document.querySelector(".logo").classList.remove("hidden");
-  setTimeout(function () {
+  setTimeout(function() {
     animation1();
     animation2();
     animation3();
@@ -103,7 +91,7 @@ function indexScript() {
   function indexLogoTransition() {
     const splashlogo = document.querySelector(".logo");
 
-    window.addEventListener("scroll", function () {
+    window.addEventListener("scroll", function() {
       splashlogo.style.transition = "1s";
 
       let scrollpos = window.scrollY;
@@ -130,7 +118,7 @@ function indexScript() {
     const scene = new ScrollMagic.Scene({
       triggerElement: ".animate-me",
       triggerHook: 1, // "onLeave", 0-1
-      duration: "100%",
+      duration: "100%"
     })
 
       .setTween(tl)
@@ -149,7 +137,7 @@ function indexScript() {
     const scene2 = new ScrollMagic.Scene({
       triggerElement: ".animate-me-2",
       triggerHook: 1,
-      duration: "100%",
+      duration: "100%"
     })
       .setTween(tl2)
       .addTo(controller2);
@@ -169,7 +157,7 @@ function indexScript() {
     const scene3 = new ScrollMagic.Scene({
       triggerElement: ".animate-me-3",
       triggerHook: 1,
-      duration: "100%",
+      duration: "100%"
     })
       .setTween(tl3)
       .addTo(controller3);
@@ -189,7 +177,7 @@ function indexScript() {
     const scene4 = new ScrollMagic.Scene({
       triggerElement: ".animate-me-4",
       triggerHook: 1,
-      duration: "100%",
+      duration: "100%"
     })
       .setTween(tl4)
       .addTo(controller4);
@@ -204,8 +192,7 @@ function stelScript() {
 
   function loadWordpress() {
     async function getJson() {
-      let url =
-        "https://mouad.dk/Geden/wordpress/wp-json/wp/v2/stel?per_page=100";
+      let url = "https://mouad.dk/Geden/wordpress/wp-json/wp/v2/stel?per_page=100";
       let jsonData = await fetch(url);
       stels = await jsonData.json();
       loadStel();
@@ -214,15 +201,15 @@ function stelScript() {
     let filter = "all";
     let filter2 = "all";
 
-    document.querySelectorAll(".filter").forEach((knap) => {
+    document.querySelectorAll(".filter").forEach(knap => {
       knap.addEventListener("click", filtrering);
     });
-    document.querySelectorAll(".filter2").forEach((knap) => {
+    document.querySelectorAll(".filter2").forEach(knap => {
       knap.addEventListener("click", filtrering2);
     });
 
     function filtrering() {
-      document.querySelectorAll(".filter").forEach((knap) => {
+      document.querySelectorAll(".filter").forEach(knap => {
         knap.classList.remove("valgt");
       });
       this.classList.add("valgt");
@@ -233,7 +220,7 @@ function stelScript() {
       //filtrering iforhold til hus
     }
     function filtrering2() {
-      document.querySelectorAll(".filter2").forEach((knap) => {
+      document.querySelectorAll(".filter2").forEach(knap => {
         knap.classList.remove("valgt");
       });
       this.classList.add("valgt");
@@ -249,11 +236,8 @@ function stelScript() {
       let temp = document.querySelector("template");
 
       dest.innerHTML = "";
-      stels.forEach((stel) => {
-        if (
-          (filter == "all" || stel.filterstr == filter) &&
-          (filter2 == "all" || stel.tid == filter2)
-        ) {
+      stels.forEach(stel => {
+        if ((filter == "all" || stel.filterstr == filter) && (filter2 == "all" || stel.tid == filter2)) {
           let klon = temp.cloneNode(true).content;
           klon.querySelector(".stel-image>img").src = stel.image.guid;
           klon.querySelector(".stel-title").textContent = stel.title.rendered;
@@ -274,9 +258,7 @@ function stelScript() {
     }
 
     function singleView(stel) {
-      document.querySelector(
-        "#indhold"
-      ).innerHTML = `<div class="pop-up-background"></div><div class="ramme">
+      document.querySelector("#indhold").innerHTML = `<div class="pop-up-background"></div><div class="ramme">
       <div id="luk"><button id="lukknap"></button></div>
       <img src=${stel.image.guid} alt=${stel.title.rendered}>
       <h2>${stel.title.rendered}</h2> 
@@ -288,9 +270,7 @@ function stelScript() {
       </div>
       </div>`; /* Dette er hvad der skal fremgå i singleview, dette er altså hvad der skal erstattes i HTML. */
       document.querySelector("#pop-op").style.display = "block";
-      document
-        .querySelector("#pop-op #lukknap")
-        .addEventListener("click", close);
+      document.querySelector("#pop-op #lukknap").addEventListener("click", close);
       console.log(stel);
     }
     function close() {
@@ -310,10 +290,9 @@ function scrollHeader() {
   const burgerBtn = document.querySelector(".menu-btn");
 
   const add_class_on_scroll = () => header.classList.add("scrolled-header");
-  const remove_class_on_scroll = () =>
-    header.classList.remove("scrolled-header");
+  const remove_class_on_scroll = () => header.classList.remove("scrolled-header");
 
-  window.addEventListener("scroll", function () {
+  window.addEventListener("scroll", function() {
     scrollpos = window.scrollY;
 
     if (scrollpos >= 1) {
@@ -344,7 +323,7 @@ function loadBurger() {
       menuOpen = true;
       mobileMenu.style.display = "block";
 
-      setTimeout(function () {
+      setTimeout(function() {
         mobileMenu.classList.add("menu-transition");
       }, 500);
 
@@ -362,7 +341,7 @@ function loadBurger() {
   // ON PAGE LEAVE
 
   barba.hooks.leave(() => {
-    setTimeout(function () {
+    setTimeout(function() {
       mobileMenu.style.display = "none";
       mobileMenu.classList.remove("menu-transition");
     }, 700);
@@ -377,7 +356,7 @@ scrollHeader();
 loadBurger();
 
 barba.hooks.enter(() => {
-  setTimeout(function () {
+  setTimeout(function() {
     window.scrollTo(0, 0);
   }, 300);
 
