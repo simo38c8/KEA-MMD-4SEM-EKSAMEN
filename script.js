@@ -263,12 +263,17 @@ function stelScript() {
 
           dest.appendChild(klon);
 
-          dest.lastElementChild.addEventListener("click", () => {
-            document.querySelector("body").classList.add("noscroll");
-            document.querySelector(".menu-btn").classList.add("hide-menu-btn");
+          if (window.innerWidth > "700") {
+            // If media query matches
+            dest.lastElementChild.addEventListener("click", () => {
+              document.querySelector("body").classList.add("noscroll");
+              document
+                .querySelector(".menu-btn")
+                .classList.add("hide-menu-btn");
 
-            singleView(stel);
-          });
+              singleView(stel);
+            });
+          }
         }
       });
     }
