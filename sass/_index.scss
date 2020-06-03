@@ -100,11 +100,16 @@
 }
 
 .animate-me-3 {
-  position: relative;
-  width: 400px;
-  bottom: 100px;
-  right: -85%;
-  opacity: 0.2;
+  // position: relative;
+  // width: 400px;
+  // bottom: 100px;
+  // right: -85%;
+
+  position: absolute;
+  bottom: 1300px;
+  left: -140px;
+  width: 310px;
+  opacity: 0.8;
 }
 
 .animate-me,
@@ -235,4 +240,8 @@
   .waves {
     height: 16vh;
   }
+}
+
+body.home {
+  position: relative;
 }

@@ -264,3 +264,8 @@ option {
 .noscroll {
   overflow: hidden;
 }
+
+.hide-menu-btn {
+  z-index: -1;
+  transition: 0s;
+}
