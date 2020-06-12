@@ -262,6 +262,7 @@ function stelScript() {
             let stelname = e.parentElement.parentElement.firstElementChild.textContent;
             const backgroundoverlay = document.querySelector("#signoverlay");
             const signupform = document.querySelector("#signup");
+            const closeBtn = document.querySelector("signup-close");
             backgroundoverlay.classList.remove("hide");
             setTimeout(function() {
               signupform.classList.remove("rotateY");
@@ -270,6 +271,10 @@ function stelScript() {
 
             backgroundoverlay.addEventListener("click", () => {
               backgroundoverlay.classList.add("hide");
+              signupform.classList.add("rotateY");
+            });
+
+            closeBtn.addEventListener("click", () => {
               signupform.classList.add("rotateY");
             });
 

@@ -88,6 +88,22 @@
   width: 100vw;
   font-family: "Inconsolata", monospace;
 
+  button.signup-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+
+    width: unset;
+    grid-row: unset;
+    grid-column: unset;
+    justify-self: unset;
+    cursor: pointer;
+    padding: 5px 10px;
+    border: none;
+    font-size: 20px;
+    outline: none;
+  }
+
   input {
     padding: 10px 0;
     margin-bottom: 30px;
