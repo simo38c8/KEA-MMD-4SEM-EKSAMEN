@@ -49,28 +49,40 @@ barba.init({
       namespace: "product",
       beforeEnter(data) {
         stelScript();
-        document.querySelector("body > header > nav > ul > li:nth-child(1) > a").classList.add("current-page");
+        document
+          .querySelector("body > header > nav > ul > li:nth-child(1) > a")
+          .classList.add("current-page");
       },
       beforeLeave(data) {
-        document.querySelector("body > header > nav > ul > li:nth-child(1) > a").classList.remove("current-page");
+        document
+          .querySelector("body > header > nav > ul > li:nth-child(1) > a")
+          .classList.remove("current-page");
       },
     },
     {
       namespace: "om",
       beforeEnter(data) {
-        document.querySelector("body > header > nav > ul > li:nth-child(2) > a").classList.add("current-page");
+        document
+          .querySelector("body > header > nav > ul > li:nth-child(2) > a")
+          .classList.add("current-page");
       },
       beforeLeave(data) {
-        document.querySelector("body > header > nav > ul > li:nth-child(2) > a").classList.remove("current-page");
+        document
+          .querySelector("body > header > nav > ul > li:nth-child(2) > a")
+          .classList.remove("current-page");
       },
     },
     {
       namespace: "reparationer",
       beforeEnter(data) {
-        document.querySelector("body > header > nav > ul > li:nth-child(3) > a").classList.add("current-page");
+        document
+          .querySelector("body > header > nav > ul > li:nth-child(3) > a")
+          .classList.add("current-page");
       },
       beforeLeave(data) {
-        document.querySelector("body > header > nav > ul > li:nth-child(3) > a").classList.remove("current-page");
+        document
+          .querySelector("body > header > nav > ul > li:nth-child(3) > a")
+          .classList.remove("current-page");
       },
     },
   ],
@@ -192,7 +204,8 @@ function stelScript() {
 
   function loadWordpress() {
     async function getJson() {
-      let url = "https://mouad.dk/Geden/wordpress/wp-json/wp/v2/stel?per_page=100";
+      let url =
+        "https://mouad.dk/Geden/wordpress/wp-json/wp/v2/stel?per_page=100";
       let jsonData = await fetch(url);
       stels = await jsonData.json();
       loadStel();
@@ -237,25 +250,31 @@ function stelScript() {
 
       dest.innerHTML = "";
       stels.forEach((stel) => {
-        if ((filter == "all" || stel.filterstr == filter) && (filter2 == "all" || stel.tid == filter2)) {
+        if (
+          (filter == "all" || stel.filterstr == filter) &&
+          (filter2 == "all" || stel.tid == filter2)
+        ) {
           let klon = temp.cloneNode(true).content;
           klon.querySelector(".stel-image>img").src = stel.image.guid;
           klon.querySelector(".stel-title").textContent = stel.title.rendered;
           klon.querySelector(".span-size").textContent = stel.size;
           klon.querySelector(".span-year").textContent = stel.year;
           klon.querySelector(".stel-text").textContent = stel.om;
-
-          dest.appendChild(klon);
-
           if (window.innerWidth > "700") {
             // If media query matches
-            dest.lastElementChild.addEventListener("click", () => {
-              document.querySelector("body").classList.add("noscroll");
-              document.querySelector(".menu-btn").classList.add("hide-menu-btn");
+            klon
+              .querySelector(".stel-image>img")
+              .addEventListener("click", () => {
+                document.querySelector("body").classList.add("noscroll");
+                document
+                  .querySelector(".menu-btn")
+                  .classList.add("hide-menu-btn");
 
-              /* singleView(stel); */
-            });
+                singleView(stel);
+              });
           }
+
+          dest.appendChild(klon);
 
           document.querySelectorAll(".btn-stel").forEach((btn) => {
             btn.addEventListener("click", openForm);
@@ -282,17 +301,37 @@ function stelScript() {
               });
 
               function checkValidity() {
-                let firstNameValidity = document.querySelector("input[name='firstname']").checkValidity();
-                let lastNameValidity = document.querySelector("input[name='lastname']").checkValidity();
-                let passwordValidity = document.querySelector("input[name='password']").checkValidity();
+                let firstNameValidity = document
+                  .querySelector("input[name='firstname']")
+                  .checkValidity();
+                let lastNameValidity = document
+                  .querySelector("input[name='lastname']")
+                  .checkValidity();
+                let passwordValidity = document
+                  .querySelector("input[name='password']")
+                  .checkValidity();
                 let passwordconfirmValidity = passwordMatch();
-                let passwordconfirmValid = document.querySelector("input[name='passwordconfirm']").checkValidity();
-                let usernameValidity = document.querySelector("input[name='username']").checkValidity();
-                let adressValidity = document.querySelector("input[name='adress']").checkValidity();
-                let zipcodeValidity = document.querySelector("input[name='zipcode']").checkValidity();
-                let cityValidity = document.querySelector("input[name='city']").checkValidity();
-                let emailValidity = document.querySelector("input[name='email']").checkValidity();
-                let phoneValidity = document.querySelector("input[name='phone']").checkValidity();
+                let passwordconfirmValid = document
+                  .querySelector("input[name='passwordconfirm']")
+                  .checkValidity();
+                let usernameValidity = document
+                  .querySelector("input[name='username']")
+                  .checkValidity();
+                let adressValidity = document
+                  .querySelector("input[name='adress']")
+                  .checkValidity();
+                let zipcodeValidity = document
+                  .querySelector("input[name='zipcode']")
+                  .checkValidity();
+                let cityValidity = document
+                  .querySelector("input[name='city']")
+                  .checkValidity();
+                let emailValidity = document
+                  .querySelector("input[name='email']")
+                  .checkValidity();
+                let phoneValidity = document
+                  .querySelector("input[name='phone']")
+                  .checkValidity();
 
                 if (
                   firstNameValidity === true &&
@@ -307,127 +346,236 @@ function stelScript() {
                   phoneValidity === true
                 ) {
                   document.querySelector("#submit").removeAttribute("disabled");
-                  document.querySelector("#submit").classList.add("greenbutton");
+                  document
+                    .querySelector("#submit")
+                    .classList.add("greenbutton");
                   console.log("Valid");
                 } else {
                   console.log("Invalid");
                   document.querySelector("#submit").disabled = "true";
-                  document.querySelector("#submit").classList.remove("greenbutton");
+                  document
+                    .querySelector("#submit")
+                    .classList.remove("greenbutton");
                 }
               }
 
-              document.querySelector("input[name='firstname']").addEventListener("blur", () => {
-                let firstNameValidity = document.querySelector("input[name='firstname']").checkValidity();
-                if (firstNameValidity === false) {
-                  document.querySelector(".help1").classList.remove("hide_help");
-                  document.querySelector("#L1").classList.add("invalid_state");
-                } else {
-                  document.querySelector(".help1").classList.add("hide_help");
-                  document.querySelector("#L1").classList.remove("invalid_state");
-                }
-              });
+              document
+                .querySelector("input[name='firstname']")
+                .addEventListener("blur", () => {
+                  let firstNameValidity = document
+                    .querySelector("input[name='firstname']")
+                    .checkValidity();
+                  if (firstNameValidity === false) {
+                    document
+                      .querySelector(".help1")
+                      .classList.remove("hide_help");
+                    document
+                      .querySelector("#L1")
+                      .classList.add("invalid_state");
+                  } else {
+                    document.querySelector(".help1").classList.add("hide_help");
+                    document
+                      .querySelector("#L1")
+                      .classList.remove("invalid_state");
+                  }
+                });
 
-              document.querySelector("input[name='lastname']").addEventListener("blur", () => {
-                let lastNameValidity = document.querySelector("input[name='lastname']").checkValidity();
-                if (lastNameValidity === false) {
-                  document.querySelector(".help2").classList.remove("hide_help");
-                  document.querySelector("#L2").classList.add("invalid_state");
-                } else {
-                  document.querySelector(".help2").classList.add("hide_help");
-                  document.querySelector("#L2").classList.remove("invalid_state");
-                }
-              });
+              document
+                .querySelector("input[name='lastname']")
+                .addEventListener("blur", () => {
+                  let lastNameValidity = document
+                    .querySelector("input[name='lastname']")
+                    .checkValidity();
+                  if (lastNameValidity === false) {
+                    document
+                      .querySelector(".help2")
+                      .classList.remove("hide_help");
+                    document
+                      .querySelector("#L2")
+                      .classList.add("invalid_state");
+                  } else {
+                    document.querySelector(".help2").classList.add("hide_help");
+                    document
+                      .querySelector("#L2")
+                      .classList.remove("invalid_state");
+                  }
+                });
 
-              document.querySelector("input[name='username']").addEventListener("blur", () => {
-                let usernameValidity = document.querySelector("input[name='username']").checkValidity();
-                if (usernameValidity === false) {
-                  document.querySelector(".help3").classList.remove("hide_help");
-                  document.querySelector("#L3").classList.add("invalid_state");
-                } else {
-                  document.querySelector(".help3").classList.add("hide_help");
-                  document.querySelector("#L3").classList.remove("invalid_state");
-                }
-              });
+              document
+                .querySelector("input[name='username']")
+                .addEventListener("blur", () => {
+                  let usernameValidity = document
+                    .querySelector("input[name='username']")
+                    .checkValidity();
+                  if (usernameValidity === false) {
+                    document
+                      .querySelector(".help3")
+                      .classList.remove("hide_help");
+                    document
+                      .querySelector("#L3")
+                      .classList.add("invalid_state");
+                  } else {
+                    document.querySelector(".help3").classList.add("hide_help");
+                    document
+                      .querySelector("#L3")
+                      .classList.remove("invalid_state");
+                  }
+                });
 
-              document.querySelector("input[name='password']").addEventListener("blur", () => {
-                let passwordValidity = document.querySelector("input[name='password']").checkValidity();
-                if (passwordValidity === false) {
-                  document.querySelector(".help4").classList.remove("hide_help");
-                  document.querySelector("#L4").classList.add("invalid_state");
-                } else {
-                  document.querySelector(".help4").classList.add("hide_help");
-                  document.querySelector("#L4").classList.remove("invalid_state");
-                }
-              });
+              document
+                .querySelector("input[name='password']")
+                .addEventListener("blur", () => {
+                  let passwordValidity = document
+                    .querySelector("input[name='password']")
+                    .checkValidity();
+                  if (passwordValidity === false) {
+                    document
+                      .querySelector(".help4")
+                      .classList.remove("hide_help");
+                    document
+                      .querySelector("#L4")
+                      .classList.add("invalid_state");
+                  } else {
+                    document.querySelector(".help4").classList.add("hide_help");
+                    document
+                      .querySelector("#L4")
+                      .classList.remove("invalid_state");
+                  }
+                });
 
-              document.querySelector("input[name='passwordconfirm']").addEventListener("blur", () => {
-                let passwordValid = document.querySelector("input[name='passwordconfirm']").checkValidity();
-                if (passwordValid === false) {
-                  document.querySelector(".help5").classList.remove("hide_help");
-                  document.querySelector("#L5").classList.add("invalid_state");
-                } else {
-                  document.querySelector(".help5").classList.add("hide_help");
-                  document.querySelector("#L5").classList.remove("invalid_state");
-                }
-              });
+              document
+                .querySelector("input[name='passwordconfirm']")
+                .addEventListener("blur", () => {
+                  let passwordValid = document
+                    .querySelector("input[name='passwordconfirm']")
+                    .checkValidity();
+                  if (passwordValid === false) {
+                    document
+                      .querySelector(".help5")
+                      .classList.remove("hide_help");
+                    document
+                      .querySelector("#L5")
+                      .classList.add("invalid_state");
+                  } else {
+                    document.querySelector(".help5").classList.add("hide_help");
+                    document
+                      .querySelector("#L5")
+                      .classList.remove("invalid_state");
+                  }
+                });
 
-              document.querySelector("input[name='email']").addEventListener("blur", () => {
-                let emailValidity = document.querySelector("input[name='email']").checkValidity();
-                if (emailValidity === false) {
-                  document.querySelector(".help6").classList.remove("hide_help");
-                  document.querySelector("#L6").classList.add("invalid_state");
-                } else {
-                  document.querySelector(".help6").classList.add("hide_help");
-                  document.querySelector("#L6").classList.remove("invalid_state");
-                }
-              });
+              document
+                .querySelector("input[name='email']")
+                .addEventListener("blur", () => {
+                  let emailValidity = document
+                    .querySelector("input[name='email']")
+                    .checkValidity();
+                  if (emailValidity === false) {
+                    document
+                      .querySelector(".help6")
+                      .classList.remove("hide_help");
+                    document
+                      .querySelector("#L6")
+                      .classList.add("invalid_state");
+                  } else {
+                    document.querySelector(".help6").classList.add("hide_help");
+                    document
+                      .querySelector("#L6")
+                      .classList.remove("invalid_state");
+                  }
+                });
 
-              document.querySelector("input[name='adress']").addEventListener("blur", () => {
-                let adressValidity = document.querySelector("input[name='adress']").checkValidity();
-                if (adressValidity === false) {
-                  document.querySelector(".help7").classList.remove("hide_help");
-                  document.querySelector("#L7").classList.add("invalid_state");
-                } else {
-                  document.querySelector(".help7").classList.add("hide_help");
-                  document.querySelector("#L7").classList.remove("invalid_state");
-                }
-              });
+              document
+                .querySelector("input[name='adress']")
+                .addEventListener("blur", () => {
+                  let adressValidity = document
+                    .querySelector("input[name='adress']")
+                    .checkValidity();
+                  if (adressValidity === false) {
+                    document
+                      .querySelector(".help7")
+                      .classList.remove("hide_help");
+                    document
+                      .querySelector("#L7")
+                      .classList.add("invalid_state");
+                  } else {
+                    document.querySelector(".help7").classList.add("hide_help");
+                    document
+                      .querySelector("#L7")
+                      .classList.remove("invalid_state");
+                  }
+                });
 
-              document.querySelector("input[name='zipcode']").addEventListener("blur", () => {
-                let zipcodeValidity = document.querySelector("input[name='zipcode']").checkValidity();
-                if (zipcodeValidity === false) {
-                  document.querySelector(".help8").classList.remove("hide_help");
-                  document.querySelector("#L8").classList.add("invalid_state");
-                } else {
-                  document.querySelector(".help8").classList.add("hide_help");
-                  document.querySelector("#L8").classList.remove("invalid_state");
-                }
-              });
+              document
+                .querySelector("input[name='zipcode']")
+                .addEventListener("blur", () => {
+                  let zipcodeValidity = document
+                    .querySelector("input[name='zipcode']")
+                    .checkValidity();
+                  if (zipcodeValidity === false) {
+                    document
+                      .querySelector(".help8")
+                      .classList.remove("hide_help");
+                    document
+                      .querySelector("#L8")
+                      .classList.add("invalid_state");
+                  } else {
+                    document.querySelector(".help8").classList.add("hide_help");
+                    document
+                      .querySelector("#L8")
+                      .classList.remove("invalid_state");
+                  }
+                });
 
-              document.querySelector("input[name='city']").addEventListener("blur", () => {
-                let cityValidity = document.querySelector("input[name='city']").checkValidity();
-                if (cityValidity === false) {
-                  document.querySelector(".help9").classList.remove("hide_help");
-                  document.querySelector("#L9").classList.add("invalid_state");
-                } else {
-                  document.querySelector(".help9").classList.add("hide_help");
-                  document.querySelector("#L9").classList.remove("invalid_state");
-                }
-              });
+              document
+                .querySelector("input[name='city']")
+                .addEventListener("blur", () => {
+                  let cityValidity = document
+                    .querySelector("input[name='city']")
+                    .checkValidity();
+                  if (cityValidity === false) {
+                    document
+                      .querySelector(".help9")
+                      .classList.remove("hide_help");
+                    document
+                      .querySelector("#L9")
+                      .classList.add("invalid_state");
+                  } else {
+                    document.querySelector(".help9").classList.add("hide_help");
+                    document
+                      .querySelector("#L9")
+                      .classList.remove("invalid_state");
+                  }
+                });
 
-              document.querySelector("input[name='phone']").addEventListener("blur", () => {
-                let phoneValidity = document.querySelector("input[name='phone']").checkValidity();
-                if (phoneValidity === false) {
-                  document.querySelector(".help10").classList.remove("hide_help");
-                  document.querySelector("#L10").classList.add("invalid_state");
-                } else {
-                  document.querySelector(".help10").classList.add("hide_help");
-                  document.querySelector("#L10").classList.remove("invalid_state");
-                }
-              });
+              document
+                .querySelector("input[name='phone']")
+                .addEventListener("blur", () => {
+                  let phoneValidity = document
+                    .querySelector("input[name='phone']")
+                    .checkValidity();
+                  if (phoneValidity === false) {
+                    document
+                      .querySelector(".help10")
+                      .classList.remove("hide_help");
+                    document
+                      .querySelector("#L10")
+                      .classList.add("invalid_state");
+                  } else {
+                    document
+                      .querySelector(".help10")
+                      .classList.add("hide_help");
+                    document
+                      .querySelector("#L10")
+                      .classList.remove("invalid_state");
+                  }
+                });
 
               function passwordMatch() {
-                if (document.querySelector("input[name='password']").value === document.querySelector("input[name='passwordconfirm']").value) {
+                if (
+                  document.querySelector("input[name='password']").value ===
+                  document.querySelector("input[name='passwordconfirm']").value
+                ) {
                   console.log("de matcher");
                   return true;
                 } else {
@@ -436,60 +584,68 @@ function stelScript() {
                 }
               }
 
-              document.querySelector("#submit").addEventListener("click", (e) => {
-                console.log("button clicked");
-                e.preventDefault();
-                post();
+              document
+                .querySelector("#submit")
+                .addEventListener("click", (e) => {
+                  console.log("button clicked");
+                  e.preventDefault();
+                  post();
 
-                function post() {
-                  const data = {
-                    firstname: "Geden",
-                    lastname: "Cykelværksted",
-                    username: "GedenCykelværksted",
-                    password: "2300",
-                    email: "geden2300@hotmail.com",
-                    adress: "Liflandsgade 2n",
-                    zipcode: "2300",
-                    city: "København",
-                    phone: "30229522",
-                  };
+                  function post() {
+                    const data = {
+                      firstname: "Geden",
+                      lastname: "Cykelværksted",
+                      username: "GedenCykelværksted",
+                      password: "2300",
+                      email: "geden2300@hotmail.com",
+                      adress: "Liflandsgade 2n",
+                      zipcode: "2300",
+                      city: "København",
+                      phone: "30229522",
+                    };
 
-                  data.firstname = form.elements.firstname.value;
-                  data.lastname = form.elements.lastname.value;
-                  data.username = form.elements.username.value;
-                  data.password = form.elements.password.value;
-                  data.email = form.elements.email.value;
-                  data.adress = form.elements.adress.value;
-                  data.zipcode = form.elements.zipcode.value;
-                  data.city = form.elements.city.value;
-                  data.phone = form.elements.phone.value;
+                    data.firstname = form.elements.firstname.value;
+                    data.lastname = form.elements.lastname.value;
+                    data.username = form.elements.username.value;
+                    data.password = form.elements.password.value;
+                    data.email = form.elements.email.value;
+                    data.adress = form.elements.adress.value;
+                    data.zipcode = form.elements.zipcode.value;
+                    data.city = form.elements.city.value;
+                    data.phone = form.elements.phone.value;
 
-                  const postData = JSON.stringify(data);
-                  fetch(`https://coldfriday-37b0.restdb.io/rest/jack21`, {
-                    method: "post",
-                    headers: {
-                      "Content-Type": "application/json; charset=utf-8",
-                      "x-apikey": "5dee0691bf46220df655d8c4",
-                      "cache-control": "no-cache",
-                    },
-                    body: postData,
-                  })
-                    .then((res) => res.json())
-                    .then((data) => {
-                      console.log(data);
-                    });
-                }
+                    const postData = JSON.stringify(data);
+                    fetch(`https://coldfriday-37b0.restdb.io/rest/jack21`, {
+                      method: "post",
+                      headers: {
+                        "Content-Type": "application/json; charset=utf-8",
+                        "x-apikey": "5dee0691bf46220df655d8c4",
+                        "cache-control": "no-cache",
+                      },
+                      body: postData,
+                    })
+                      .then((res) => res.json())
+                      .then((data) => {
+                        console.log(data);
+                      });
+                  }
 
-                document.querySelector("#signup").classList.add("rotateY");
-                setTimeout(function () {
-                  document.querySelector("#signupcomplete").classList.remove("hide");
-                }, 1000);
-              });
+                  document.querySelector("#signup").classList.add("rotateY");
+                  setTimeout(function () {
+                    document
+                      .querySelector("#signupcomplete")
+                      .classList.remove("hide");
+                  }, 1000);
+                });
 
-              document.querySelector(".back2game").addEventListener("click", (e) => {
-                document.querySelector("#signupcomplete").classList.add("hide");
-                document.querySelector("#signoverlay").classList.add("hide");
-              });
+              document
+                .querySelector(".back2game")
+                .addEventListener("click", (e) => {
+                  document
+                    .querySelector("#signupcomplete")
+                    .classList.add("hide");
+                  document.querySelector("#signoverlay").classList.add("hide");
+                });
             }
           }
         }
@@ -497,19 +653,23 @@ function stelScript() {
     }
 
     function singleView(stel) {
-      document.querySelector("#indhold").innerHTML = `<div class="pop-up-background"></div><div class="ramme">
+      document.querySelector(
+        "#indhold"
+      ).innerHTML = `<div class="pop-up-background"></div><div class="ramme">
       <div id="luk"><button id="lukknap"></button></div>
       <img src=${stel.image.guid} alt=${stel.title.rendered}>
       <h2>${stel.title.rendered}</h2> 
       <div class="rammecentrer">
       <p>${stel.om}</p> 
       <br> 
-      <p>Størrelse: ${stel.size}</p> 
-      <p>Årgang: ${stel.year}</p>
+      <p style="font-weight: 700; ">Størrelse: ${stel.size}</p> 
+      <p style="font-weight: 700;">Årgang: ${stel.year}</p>
       </div>
       </div>`; /* Dette er hvad der skal fremgå i singleview, dette er altså hvad der skal erstattes i HTML. */
       document.querySelector("#pop-op").style.display = "block";
-      document.querySelector("#pop-op #lukknap").addEventListener("click", close);
+      document
+        .querySelector("#pop-op #lukknap")
+        .addEventListener("click", close);
       console.log(stel);
     }
     function close() {
@@ -529,7 +689,8 @@ function scrollHeader() {
   const burgerBtn = document.querySelector(".menu-btn");
 
   const add_class_on_scroll = () => header.classList.add("scrolled-header");
-  const remove_class_on_scroll = () => header.classList.remove("scrolled-header");
+  const remove_class_on_scroll = () =>
+    header.classList.remove("scrolled-header");
 
   window.addEventListener("scroll", function () {
     scrollpos = window.scrollY;

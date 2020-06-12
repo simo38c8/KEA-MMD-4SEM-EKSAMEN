@@ -42,7 +42,7 @@
 }
 
 .valgt {
-  background-color: #ffc600;
+  background-color: $yellow;
 }
 
 #size {
@@ -50,7 +50,6 @@
 }
 
 .stel-row {
-  cursor: pointer;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -98,6 +97,7 @@
   .stel-image {
     padding: 0 20px;
     img {
+      cursor: pointer;
       width: auto;
       height: 300px;
       object-fit: cover;
