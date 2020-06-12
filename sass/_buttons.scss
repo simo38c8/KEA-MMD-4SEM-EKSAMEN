@@ -53,6 +53,8 @@ span.btn-stel button {
   transition: all 0.2s ease-out;
   box-shadow: 3px 3px 0 0 #333;
   font-weight: 600;
+  font-family: "Inconsolata", monospace;
+  outline: none;
 }
 span.btn-stel button:hover {
   transform: translate(2px, 2px);

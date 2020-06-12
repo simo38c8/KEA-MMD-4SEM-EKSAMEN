@@ -86,6 +86,7 @@
   padding: 40px;
   border: 2px solid black;
   width: 100vw;
+  font-family: "Inconsolata", monospace;
 
   input {
     padding: 10px 0;
@@ -96,6 +97,7 @@
     border-bottom: 2px solid black;
     background-color: transparent;
     color: black;
+    font-family: "Inconsolata", monospace;
   }
 
   input[type="submit"] {
@@ -111,6 +113,7 @@
     color: #aba9a0;
     font-size: 12px;
     font-weight: bold;
+    font-family: "Inconsolata", monospace;
   }
 
   input:focus ~ label,
@@ -120,6 +123,7 @@
     color: #aba9a0;
     font-size: 12px;
     font-weight: bold;
+    font-family: "Inconsolata", monospace;
   }
 
   input:invalid:not(:placeholder-shown):not(:focus) {
@@ -171,6 +175,7 @@
     font-size: 10px;
     color: #e43030;
     margin: -15px 0 25px 0;
+    font-family: "Barlow", sans-serif;
   }
 }
 
@@ -215,7 +220,7 @@ input:focus + .help-text {
     min-height: 300px;
   }
   #signup {
-    top: calc(52vh - 300px);
+    top: calc(52vh - 200px);
     left: calc(50vw - 300px);
     width: 600px;
   }
