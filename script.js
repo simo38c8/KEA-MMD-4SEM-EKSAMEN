@@ -260,6 +260,8 @@ function stelScript() {
           klon.querySelector(".span-size").textContent = stel.size;
           klon.querySelector(".span-year").textContent = stel.year;
           klon.querySelector(".stel-text").textContent = stel.om;
+          klon.querySelector(".btn-stel").addEventListener("click", openForm);
+
           if (window.innerWidth > "700") {
             // If media query matches
             klon
@@ -273,12 +275,7 @@ function stelScript() {
                 singleView(stel);
               });
           }
-
           dest.appendChild(klon);
-
-          document.querySelectorAll(".btn-stel").forEach((btn) => {
-            btn.addEventListener("click", openForm);
-          });
 
           function openForm(e) {
             e = event.target;
@@ -293,7 +290,6 @@ function stelScript() {
             function formScript() {
               const form = document.querySelector("#signup");
               const formfield = document.querySelectorAll("input");
-
               form.setAttribute("novalidate", true);
 
               formfield.forEach((formfield) => {
@@ -307,25 +303,6 @@ function stelScript() {
                 let lastNameValidity = document
                   .querySelector("input[name='lastname']")
                   .checkValidity();
-                let passwordValidity = document
-                  .querySelector("input[name='password']")
-                  .checkValidity();
-                let passwordconfirmValidity = passwordMatch();
-                let passwordconfirmValid = document
-                  .querySelector("input[name='passwordconfirm']")
-                  .checkValidity();
-                let usernameValidity = document
-                  .querySelector("input[name='username']")
-                  .checkValidity();
-                let adressValidity = document
-                  .querySelector("input[name='adress']")
-                  .checkValidity();
-                let zipcodeValidity = document
-                  .querySelector("input[name='zipcode']")
-                  .checkValidity();
-                let cityValidity = document
-                  .querySelector("input[name='city']")
-                  .checkValidity();
                 let emailValidity = document
                   .querySelector("input[name='email']")
                   .checkValidity();
@@ -336,12 +313,6 @@ function stelScript() {
                 if (
                   firstNameValidity === true &&
                   lastNameValidity === true &&
-                  passwordValidity === true &&
-                  passwordconfirmValidity === true &&
-                  usernameValidity === true &&
-                  adressValidity === true &&
-                  zipcodeValidity === true &&
-                  cityValidity === true &&
                   emailValidity === true &&
                   phoneValidity === true
                 ) {
@@ -402,69 +373,6 @@ function stelScript() {
                 });
 
               document
-                .querySelector("input[name='username']")
-                .addEventListener("blur", () => {
-                  let usernameValidity = document
-                    .querySelector("input[name='username']")
-                    .checkValidity();
-                  if (usernameValidity === false) {
-                    document
-                      .querySelector(".help3")
-                      .classList.remove("hide_help");
-                    document
-                      .querySelector("#L3")
-                      .classList.add("invalid_state");
-                  } else {
-                    document.querySelector(".help3").classList.add("hide_help");
-                    document
-                      .querySelector("#L3")
-                      .classList.remove("invalid_state");
-                  }
-                });
-
-              document
-                .querySelector("input[name='password']")
-                .addEventListener("blur", () => {
-                  let passwordValidity = document
-                    .querySelector("input[name='password']")
-                    .checkValidity();
-                  if (passwordValidity === false) {
-                    document
-                      .querySelector(".help4")
-                      .classList.remove("hide_help");
-                    document
-                      .querySelector("#L4")
-                      .classList.add("invalid_state");
-                  } else {
-                    document.querySelector(".help4").classList.add("hide_help");
-                    document
-                      .querySelector("#L4")
-                      .classList.remove("invalid_state");
-                  }
-                });
-
-              document
-                .querySelector("input[name='passwordconfirm']")
-                .addEventListener("blur", () => {
-                  let passwordValid = document
-                    .querySelector("input[name='passwordconfirm']")
-                    .checkValidity();
-                  if (passwordValid === false) {
-                    document
-                      .querySelector(".help5")
-                      .classList.remove("hide_help");
-                    document
-                      .querySelector("#L5")
-                      .classList.add("invalid_state");
-                  } else {
-                    document.querySelector(".help5").classList.add("hide_help");
-                    document
-                      .querySelector("#L5")
-                      .classList.remove("invalid_state");
-                  }
-                });
-
-              document
                 .querySelector("input[name='email']")
                 .addEventListener("blur", () => {
                   let emailValidity = document
@@ -481,69 +389,6 @@ function stelScript() {
                     document.querySelector(".help6").classList.add("hide_help");
                     document
                       .querySelector("#L6")
-                      .classList.remove("invalid_state");
-                  }
-                });
-
-              document
-                .querySelector("input[name='adress']")
-                .addEventListener("blur", () => {
-                  let adressValidity = document
-                    .querySelector("input[name='adress']")
-                    .checkValidity();
-                  if (adressValidity === false) {
-                    document
-                      .querySelector(".help7")
-                      .classList.remove("hide_help");
-                    document
-                      .querySelector("#L7")
-                      .classList.add("invalid_state");
-                  } else {
-                    document.querySelector(".help7").classList.add("hide_help");
-                    document
-                      .querySelector("#L7")
-                      .classList.remove("invalid_state");
-                  }
-                });
-
-              document
-                .querySelector("input[name='zipcode']")
-                .addEventListener("blur", () => {
-                  let zipcodeValidity = document
-                    .querySelector("input[name='zipcode']")
-                    .checkValidity();
-                  if (zipcodeValidity === false) {
-                    document
-                      .querySelector(".help8")
-                      .classList.remove("hide_help");
-                    document
-                      .querySelector("#L8")
-                      .classList.add("invalid_state");
-                  } else {
-                    document.querySelector(".help8").classList.add("hide_help");
-                    document
-                      .querySelector("#L8")
-                      .classList.remove("invalid_state");
-                  }
-                });
-
-              document
-                .querySelector("input[name='city']")
-                .addEventListener("blur", () => {
-                  let cityValidity = document
-                    .querySelector("input[name='city']")
-                    .checkValidity();
-                  if (cityValidity === false) {
-                    document
-                      .querySelector(".help9")
-                      .classList.remove("hide_help");
-                    document
-                      .querySelector("#L9")
-                      .classList.add("invalid_state");
-                  } else {
-                    document.querySelector(".help9").classList.add("hide_help");
-                    document
-                      .querySelector("#L9")
                       .classList.remove("invalid_state");
                   }
                 });
@@ -571,19 +416,6 @@ function stelScript() {
                   }
                 });
 
-              function passwordMatch() {
-                if (
-                  document.querySelector("input[name='password']").value ===
-                  document.querySelector("input[name='passwordconfirm']").value
-                ) {
-                  console.log("de matcher");
-                  return true;
-                } else {
-                  console.log("intet match");
-                  return false;
-                }
-              }
-
               document
                 .querySelector("#submit")
                 .addEventListener("click", (e) => {
@@ -593,29 +425,19 @@ function stelScript() {
 
                   function post() {
                     const data = {
-                      firstname: "Geden",
-                      lastname: "Cykelværksted",
-                      username: "GedenCykelværksted",
-                      password: "2300",
+                      fornavn: "Geden",
+                      efternavn: "Cykelværksted",
+                      telefonnummer: "30229522",
                       email: "geden2300@hotmail.com",
-                      adress: "Liflandsgade 2n",
-                      zipcode: "2300",
-                      city: "København",
-                      phone: "30229522",
                     };
 
-                    data.firstname = form.elements.firstname.value;
-                    data.lastname = form.elements.lastname.value;
-                    data.username = form.elements.username.value;
-                    data.password = form.elements.password.value;
+                    data.fornavn = form.elements.firstname.value;
+                    data.efternavn = form.elements.lastname.value;
+                    data.telefonnummer = form.elements.phone.value;
                     data.email = form.elements.email.value;
-                    data.adress = form.elements.adress.value;
-                    data.zipcode = form.elements.zipcode.value;
-                    data.city = form.elements.city.value;
-                    data.phone = form.elements.phone.value;
 
                     const postData = JSON.stringify(data);
-                    fetch(`https://coldfriday-37b0.restdb.io/rest/jack21`, {
+                    fetch(`https://coldfriday-37b0.restdb.io/rest/geden2300`, {
                       method: "post",
                       headers: {
                         "Content-Type": "application/json; charset=utf-8",
@@ -639,7 +461,7 @@ function stelScript() {
                 });
 
               document
-                .querySelector(".back2game")
+                .querySelector("#signupcomplete > button")
                 .addEventListener("click", (e) => {
                   document
                     .querySelector("#signupcomplete")
