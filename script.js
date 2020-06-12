@@ -11,10 +11,10 @@ barba.init({
           let tl = new TimelineMax();
           tl.to(".loading-screen", 0.5, {
             scaleY: 1,
-            transformOrigin: "top right"
+            transformOrigin: "top right",
           });
         }
-        setTimeout(function() {
+        setTimeout(function () {
           done();
         }, 500);
       },
@@ -27,11 +27,11 @@ barba.init({
             skewX: 0,
             transformOrigin: "top right",
             ease: "power1.out",
-            delay: 1
+            delay: 1,
           });
         }
-      }
-    }
+      },
+    },
   ],
 
   views: [
@@ -43,7 +43,7 @@ barba.init({
       beforeEnter() {
         document.querySelector("body").classList.add("home");
         indexScript();
-      }
+      },
     },
     {
       namespace: "product",
@@ -53,7 +53,7 @@ barba.init({
       },
       beforeLeave(data) {
         document.querySelector("body > header > nav > ul > li:nth-child(1) > a").classList.remove("current-page");
-      }
+      },
     },
     {
       namespace: "om",
@@ -62,7 +62,7 @@ barba.init({
       },
       beforeLeave(data) {
         document.querySelector("body > header > nav > ul > li:nth-child(2) > a").classList.remove("current-page");
-      }
+      },
     },
     {
       namespace: "reparationer",
@@ -71,15 +71,15 @@ barba.init({
       },
       beforeLeave(data) {
         document.querySelector("body > header > nav > ul > li:nth-child(3) > a").classList.remove("current-page");
-      }
-    }
-  ]
+      },
+    },
+  ],
 });
 
 function indexScript() {
   document.querySelector(".logo").style.transition = "2s";
   document.querySelector(".logo").classList.remove("hidden");
-  setTimeout(function() {
+  setTimeout(function () {
     animation1();
     animation2();
     animation3();
@@ -91,7 +91,7 @@ function indexScript() {
   function indexLogoTransition() {
     const splashlogo = document.querySelector(".logo");
 
-    window.addEventListener("scroll", function() {
+    window.addEventListener("scroll", function () {
       splashlogo.style.transition = "1s";
 
       let scrollpos = window.scrollY;
@@ -118,7 +118,7 @@ function indexScript() {
     const scene = new ScrollMagic.Scene({
       triggerElement: ".animate-me",
       triggerHook: 1, // "onLeave", 0-1
-      duration: "100%"
+      duration: "100%",
     })
 
       .setTween(tl)
@@ -137,7 +137,7 @@ function indexScript() {
     const scene2 = new ScrollMagic.Scene({
       triggerElement: ".animate-me-2",
       triggerHook: 1,
-      duration: "100%"
+      duration: "100%",
     })
       .setTween(tl2)
       .addTo(controller2);
@@ -157,7 +157,7 @@ function indexScript() {
     const scene3 = new ScrollMagic.Scene({
       triggerElement: ".animate-me-3",
       triggerHook: 1,
-      duration: "100%"
+      duration: "100%",
     })
       .setTween(tl3)
       .addTo(controller3);
@@ -177,7 +177,7 @@ function indexScript() {
     const scene4 = new ScrollMagic.Scene({
       triggerElement: ".animate-me-4",
       triggerHook: 1,
-      duration: "100%"
+      duration: "100%",
     })
       .setTween(tl4)
       .addTo(controller4);
@@ -201,15 +201,15 @@ function stelScript() {
     let filter = "all";
     let filter2 = "all";
 
-    document.querySelectorAll(".filter").forEach(knap => {
+    document.querySelectorAll(".filter").forEach((knap) => {
       knap.addEventListener("click", filtrering);
     });
-    document.querySelectorAll(".filter2").forEach(knap => {
+    document.querySelectorAll(".filter2").forEach((knap) => {
       knap.addEventListener("click", filtrering2);
     });
 
     function filtrering() {
-      document.querySelectorAll(".filter").forEach(knap => {
+      document.querySelectorAll(".filter").forEach((knap) => {
         knap.classList.remove("valgt");
       });
       this.classList.add("valgt");
@@ -220,7 +220,7 @@ function stelScript() {
       //filtrering iforhold til hus
     }
     function filtrering2() {
-      document.querySelectorAll(".filter2").forEach(knap => {
+      document.querySelectorAll(".filter2").forEach((knap) => {
         knap.classList.remove("valgt");
       });
       this.classList.add("valgt");
@@ -236,7 +236,7 @@ function stelScript() {
       let temp = document.querySelector("template");
 
       dest.innerHTML = "";
-      stels.forEach(stel => {
+      stels.forEach((stel) => {
         if ((filter == "all" || stel.filterstr == filter) && (filter2 == "all" || stel.tid == filter2)) {
           let klon = temp.cloneNode(true).content;
           klon.querySelector(".stel-image>img").src = stel.image.guid;
@@ -251,12 +251,246 @@ function stelScript() {
             // If media query matches
             dest.lastElementChild.addEventListener("click", () => {
               document.querySelector("body").classList.add("noscroll");
-              document
-                .querySelector(".menu-btn")
-                .classList.add("hide-menu-btn");
+              document.querySelector(".menu-btn").classList.add("hide-menu-btn");
 
-              singleView(stel);
+              /* singleView(stel); */
             });
+          }
+
+          document.querySelectorAll(".btn-stel").forEach((btn) => {
+            btn.addEventListener("click", openForm);
+          });
+
+          function openForm(e) {
+            e = event.target;
+            document.querySelector("#signoverlay").classList.remove("hide");
+            setTimeout(function () {
+              document.querySelector("#signup").classList.remove("rotateY");
+              document.querySelector("input[name='firstname']").focus();
+            }, 400);
+
+            formScript();
+
+            function formScript() {
+              const form = document.querySelector("#signup");
+              const formfield = document.querySelectorAll("input");
+
+              form.setAttribute("novalidate", true);
+
+              formfield.forEach((formfield) => {
+                formfield.addEventListener("blur", checkValidity);
+              });
+
+              function checkValidity() {
+                let firstNameValidity = document.querySelector("input[name='firstname']").checkValidity();
+                let lastNameValidity = document.querySelector("input[name='lastname']").checkValidity();
+                let passwordValidity = document.querySelector("input[name='password']").checkValidity();
+                let passwordconfirmValidity = passwordMatch();
+                let passwordconfirmValid = document.querySelector("input[name='passwordconfirm']").checkValidity();
+                let usernameValidity = document.querySelector("input[name='username']").checkValidity();
+                let adressValidity = document.querySelector("input[name='adress']").checkValidity();
+                let zipcodeValidity = document.querySelector("input[name='zipcode']").checkValidity();
+                let cityValidity = document.querySelector("input[name='city']").checkValidity();
+                let emailValidity = document.querySelector("input[name='email']").checkValidity();
+                let phoneValidity = document.querySelector("input[name='phone']").checkValidity();
+
+                if (
+                  firstNameValidity === true &&
+                  lastNameValidity === true &&
+                  passwordValidity === true &&
+                  passwordconfirmValidity === true &&
+                  usernameValidity === true &&
+                  adressValidity === true &&
+                  zipcodeValidity === true &&
+                  cityValidity === true &&
+                  emailValidity === true &&
+                  phoneValidity === true
+                ) {
+                  document.querySelector("#submit").removeAttribute("disabled");
+                  document.querySelector("#submit").classList.add("greenbutton");
+                  console.log("Valid");
+                } else {
+                  console.log("Invalid");
+                  document.querySelector("#submit").disabled = "true";
+                  document.querySelector("#submit").classList.remove("greenbutton");
+                }
+              }
+
+              document.querySelector("input[name='firstname']").addEventListener("blur", () => {
+                let firstNameValidity = document.querySelector("input[name='firstname']").checkValidity();
+                if (firstNameValidity === false) {
+                  document.querySelector(".help1").classList.remove("hide_help");
+                  document.querySelector("#L1").classList.add("invalid_state");
+                } else {
+                  document.querySelector(".help1").classList.add("hide_help");
+                  document.querySelector("#L1").classList.remove("invalid_state");
+                }
+              });
+
+              document.querySelector("input[name='lastname']").addEventListener("blur", () => {
+                let lastNameValidity = document.querySelector("input[name='lastname']").checkValidity();
+                if (lastNameValidity === false) {
+                  document.querySelector(".help2").classList.remove("hide_help");
+                  document.querySelector("#L2").classList.add("invalid_state");
+                } else {
+                  document.querySelector(".help2").classList.add("hide_help");
+                  document.querySelector("#L2").classList.remove("invalid_state");
+                }
+              });
+
+              document.querySelector("input[name='username']").addEventListener("blur", () => {
+                let usernameValidity = document.querySelector("input[name='username']").checkValidity();
+                if (usernameValidity === false) {
+                  document.querySelector(".help3").classList.remove("hide_help");
+                  document.querySelector("#L3").classList.add("invalid_state");
+                } else {
+                  document.querySelector(".help3").classList.add("hide_help");
+                  document.querySelector("#L3").classList.remove("invalid_state");
+                }
+              });
+
+              document.querySelector("input[name='password']").addEventListener("blur", () => {
+                let passwordValidity = document.querySelector("input[name='password']").checkValidity();
+                if (passwordValidity === false) {
+                  document.querySelector(".help4").classList.remove("hide_help");
+                  document.querySelector("#L4").classList.add("invalid_state");
+                } else {
+                  document.querySelector(".help4").classList.add("hide_help");
+                  document.querySelector("#L4").classList.remove("invalid_state");
+                }
+              });
+
+              document.querySelector("input[name='passwordconfirm']").addEventListener("blur", () => {
+                let passwordValid = document.querySelector("input[name='passwordconfirm']").checkValidity();
+                if (passwordValid === false) {
+                  document.querySelector(".help5").classList.remove("hide_help");
+                  document.querySelector("#L5").classList.add("invalid_state");
+                } else {
+                  document.querySelector(".help5").classList.add("hide_help");
+                  document.querySelector("#L5").classList.remove("invalid_state");
+                }
+              });
+
+              document.querySelector("input[name='email']").addEventListener("blur", () => {
+                let emailValidity = document.querySelector("input[name='email']").checkValidity();
+                if (emailValidity === false) {
+                  document.querySelector(".help6").classList.remove("hide_help");
+                  document.querySelector("#L6").classList.add("invalid_state");
+                } else {
+                  document.querySelector(".help6").classList.add("hide_help");
+                  document.querySelector("#L6").classList.remove("invalid_state");
+                }
+              });
+
+              document.querySelector("input[name='adress']").addEventListener("blur", () => {
+                let adressValidity = document.querySelector("input[name='adress']").checkValidity();
+                if (adressValidity === false) {
+                  document.querySelector(".help7").classList.remove("hide_help");
+                  document.querySelector("#L7").classList.add("invalid_state");
+                } else {
+                  document.querySelector(".help7").classList.add("hide_help");
+                  document.querySelector("#L7").classList.remove("invalid_state");
+                }
+              });
+
+              document.querySelector("input[name='zipcode']").addEventListener("blur", () => {
+                let zipcodeValidity = document.querySelector("input[name='zipcode']").checkValidity();
+                if (zipcodeValidity === false) {
+                  document.querySelector(".help8").classList.remove("hide_help");
+                  document.querySelector("#L8").classList.add("invalid_state");
+                } else {
+                  document.querySelector(".help8").classList.add("hide_help");
+                  document.querySelector("#L8").classList.remove("invalid_state");
+                }
+              });
+
+              document.querySelector("input[name='city']").addEventListener("blur", () => {
+                let cityValidity = document.querySelector("input[name='city']").checkValidity();
+                if (cityValidity === false) {
+                  document.querySelector(".help9").classList.remove("hide_help");
+                  document.querySelector("#L9").classList.add("invalid_state");
+                } else {
+                  document.querySelector(".help9").classList.add("hide_help");
+                  document.querySelector("#L9").classList.remove("invalid_state");
+                }
+              });
+
+              document.querySelector("input[name='phone']").addEventListener("blur", () => {
+                let phoneValidity = document.querySelector("input[name='phone']").checkValidity();
+                if (phoneValidity === false) {
+                  document.querySelector(".help10").classList.remove("hide_help");
+                  document.querySelector("#L10").classList.add("invalid_state");
+                } else {
+                  document.querySelector(".help10").classList.add("hide_help");
+                  document.querySelector("#L10").classList.remove("invalid_state");
+                }
+              });
+
+              function passwordMatch() {
+                if (document.querySelector("input[name='password']").value === document.querySelector("input[name='passwordconfirm']").value) {
+                  console.log("de matcher");
+                  return true;
+                } else {
+                  console.log("intet match");
+                  return false;
+                }
+              }
+
+              document.querySelector("#submit").addEventListener("click", (e) => {
+                console.log("button clicked");
+                e.preventDefault();
+                post();
+
+                function post() {
+                  const data = {
+                    firstname: "Geden",
+                    lastname: "Cykelværksted",
+                    username: "GedenCykelværksted",
+                    password: "2300",
+                    email: "geden2300@hotmail.com",
+                    adress: "Liflandsgade 2n",
+                    zipcode: "2300",
+                    city: "København",
+                    phone: "30229522",
+                  };
+
+                  data.firstname = form.elements.firstname.value;
+                  data.lastname = form.elements.lastname.value;
+                  data.username = form.elements.username.value;
+                  data.password = form.elements.password.value;
+                  data.email = form.elements.email.value;
+                  data.adress = form.elements.adress.value;
+                  data.zipcode = form.elements.zipcode.value;
+                  data.city = form.elements.city.value;
+                  data.phone = form.elements.phone.value;
+
+                  const postData = JSON.stringify(data);
+                  fetch(`https://coldfriday-37b0.restdb.io/rest/jack21`, {
+                    method: "post",
+                    headers: {
+                      "Content-Type": "application/json; charset=utf-8",
+                      "x-apikey": "5dee0691bf46220df655d8c4",
+                      "cache-control": "no-cache",
+                    },
+                    body: postData,
+                  })
+                    .then((res) => res.json())
+                    .then((data) => {
+                      console.log(data);
+                    });
+                }
+
+                document.querySelector("#signup").classList.add("rotateY");
+                setTimeout(function () {
+                  document.querySelector("#signupcomplete").classList.remove("hide");
+                }, 1000);
+              });
+
+              document.querySelector(".back2game").addEventListener("click", (e) => {
+                document.querySelector("#signupcomplete").classList.add("hide");
+                document.querySelector("#signoverlay").classList.add("hide");
+              });
+            }
           }
         }
       });
@@ -297,7 +531,7 @@ function scrollHeader() {
   const add_class_on_scroll = () => header.classList.add("scrolled-header");
   const remove_class_on_scroll = () => header.classList.remove("scrolled-header");
 
-  window.addEventListener("scroll", function() {
+  window.addEventListener("scroll", function () {
     scrollpos = window.scrollY;
 
     if (scrollpos >= 1) {
@@ -328,7 +562,7 @@ function loadBurger() {
       menuOpen = true;
       mobileMenu.style.display = "block";
 
-      setTimeout(function() {
+      setTimeout(function () {
         mobileMenu.classList.add("menu-transition");
       }, 500);
 
@@ -346,7 +580,7 @@ function loadBurger() {
   // ON PAGE LEAVE
 
   barba.hooks.leave(() => {
-    setTimeout(function() {
+    setTimeout(function () {
       mobileMenu.style.display = "none";
       mobileMenu.classList.remove("menu-transition");
     }, 700);
@@ -361,7 +595,7 @@ scrollHeader();
 loadBurger();
 
 barba.hooks.enter(() => {
-  setTimeout(function() {
+  setTimeout(function () {
     window.scrollTo(0, 0);
   }, 300);
 

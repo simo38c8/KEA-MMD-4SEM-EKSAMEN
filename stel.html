@@ -70,6 +70,87 @@
     </div>
 
     <main data-barba="container" data-barba-namespace="product">
+
+      <div id="signoverlay" class="hide">    
+      <form id="signup" class="rotateY">
+     
+        <div class="firstrow">
+          <div class="inputcontainer">
+            <input name="firstname" type="text" placeholder="&nbsp;" required pattern="[A-Za-z]+" />
+            <span class="help1 help-text hide_help">Indtast venligst kun dit fornavn</span>
+            <label id="L1" for="firstname">Fornavn</label>
+          </div>
+          <div class="inputcontainer">
+            <input name="lastname" type="text" placeholder="&nbsp;" required pattern="[A-Za-z]+" />
+            <span class="help2 help-text hide_help">Indtast venligst kun dit efternavn</span>
+            <label id="L2">Efternavne</label>
+          </div>
+          <div class="inputcontainer">
+            <input name="username" type="text" placeholder="&nbsp;" pattern="[A-Za-z0-9_]{1,15}" required />
+            <span class="help3 help-text hide_help">Indtast venligst et tilgængeligt brugernavn (1-15 tegn)</span>
+            <label id="L3">Brugernavn</label>
+          </div>
+          <div class="inputcontainer">
+            <input name="password" type="password" placeholder="&nbsp;" required pattern="^(?=.*[a-zA-Z])(?=\w*[0-9])\w{6,12}$" />
+            <span class="help4 help-text hide_help">Indtast venligst en adgangskode med 6-12 tegn med minimum et bogstav og et tal - Ingen særlig tegn tilladt.</span>
+            <label id="L4">Adgangskode</label>
+          </div>
+          <div class="inputcontainer">
+            <input
+              name="passwordconfirm"
+              type="password"
+              placeholder="&nbsp;"
+              required
+              pattern="^(?=.*[a-zA-Z])(?=\w*[0-9])\w{6,12}$"
+            />
+            <span class="help5 help-text hide_help">Adgangskoderne skal matche</span>
+            <label id="L5">Bekræft adgangskode</label>
+          </div>
+          
+        </div>
+        <div class="secondrow">
+          <div class="inputcontainer">
+            <input name="email" type="email" placeholder="&nbsp;" required />
+            <span class="help6 help-text hide_help">Indtast venligst en gyldig email-adresse (x@x.x)</span>
+            <label id="L6">E-mail</label>
+          </div>
+          <div class="inputcontainer">
+            <input name="adress" type="text" placeholder="&nbsp;" required class="form-field" />
+            <span class="help7 help-text hide_help">Indtast venligst en gyldig adresse (Adresse navn + husnummer)</span>
+            <label id="L7">Addresse</label>
+          </div>
+          <div class="inputcontainer">
+            <input name="zipcode" type="text" placeholder="&nbsp;" required maxlength="4" minlength="4" size="4" pattern="[0-9]*" />
+            <span class="help8 help-text hide_help">Indtast venligst et gyldigt postnummer (4 cifre)</span>
+            <label id="L8">Postnummer</label>
+          </div>
+          <div class="inputcontainer">
+            <input name="city" type="text" placeholder="&nbsp;" required />
+            <span class="help9 help-text hide_help">Indtast venligst en gyldig by (Ingen numre tilladt)</span>
+            <label id="L9">By</label>
+          </div>
+          <div class="inputcontainer">
+            <input name="phone" type="tel" pattern="[0-9]*" minlength="8" maxlength="8" placeholder="&nbsp;" required />
+            <span class="help10 help-text hide_help">Indtast venligst gyldigt telefonnummer (8 cifre)</span>
+            <label id="L10">Telefonnummer</label>
+          </div>
+        </div>
+    
+        <button name="submit" id="submit" disabled>Reserver</button name="subject">
+      </form>
+
+
+  
+      <div id="signupcomplete" class="hide">
+        <button>X</button>
+        <h1>Stel reserveret!</h1>
+        <p>Tak for at reservere en cykel hos Geden</p>
+        <p>Du vil modtage en email snart</p>
+      </div>
+    </div>
+
+
+
       <main class="stels"></main>
 
       <template>
@@ -86,9 +167,9 @@
                 <span class="span-year"></span>
               </p>
             </div>
-            <!-- <span class="btn-stel">
-              <a href="stel.html">reservér</a>
-            </span> -->
+            <span class="btn-stel">
+              Reservér
+            </span>
             <p class="stel-text">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus eum natus vero animi doloremque magni placeat, aut
               sunt rem dolor nobis totam doloribus velit facere aspernatur sit cumque tempora adipisci officia suscipit, vel
@@ -160,69 +241,11 @@
       </nav>
 
       <div class="stel-container">
-        <!--  <div class="stel-row">
-          <div class="stel-image">
-            <img src="assets/zenith.png" alt="zenith" />
-          </div>
-          <div class="stel-info">
-            <h2 class="stel-title">Zenith</h2>
-            <div class="stel-stats">
-              <p class="stel-size"><span>Størrelse: </span>56 cm</p>
-              <p class="stel-year"><span>Årgang: </span>2002</p>
-            </div>
-            <span class="btn-stel">
-              <a href="stel.html">reservér</a>
-            </span>
-            <p class="stel-text">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus eum natus vero animi doloremque magni placeat, aut sunt rem dolor nobis totam doloribus velit facere aspernatur sit
-              cumque tempora adipisci officia suscipit, vel beatae ratione mollitia voluptate. Obcaecati suscipit commodi a at ullam modi omnis voluptas quia? Quae, et maiores.
-            </p>
-          </div>
-        </div>
-
-        <div class="stel-row">
-          <div class="stel-image">
-            <img src="assets/benotto.png" alt="benotto" />
-          </div>
-          <div class="stel-info">
-            <h2 class="stel-title">Benotto</h2>
-            <div class="stel-stats">
-              <p class="stel-size"><span>Størrelse: </span>52 cm</p>
-              <p class="stel-year"><span>Årgang: </span>1995</p>
-            </div>
-            <span class="btn-stel">
-              <a href="stel.html">reservér</a>
-            </span>
-            <p class="stel-text">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus eum natus vero animi doloremque magni placeat, aut sunt rem dolor nobis totam doloribus velit facere aspernatur sit
-              cumque tempora adipisci officia suscipit, vel beatae ratione mollitia voluptate. Obcaecati suscipit commodi a at ullam modi omnis voluptas quia? Quae, et maiores.
-            </p>
-          </div>
-        </div>
-
-        <div class="stel-row">
-          <div class="stel-image">
-            <img src="assets/olympia.png" alt="olympia" />
-          </div>
-          <div class="stel-info">
-            <h2 class="stel-title">Olympia</h2>
-            <div class="stel-stats"></div>
-              <p class="stel-size"><span>Størrelse: </span>48 cm</p>
-              <p class="stel-year"><span>Årgang: </span>1991</p>
-            </div>
-            <span class="btn-stel">
-              <a href="stel.html">reservér</a>
-            </span>
-            <p class="stel-text">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus eum natus vero animi doloremque magni placeat, aut sunt rem dolor nobis totam doloribus velit facere aspernatur sit
-              cumque tempora adipisci officia suscipit, vel beatae ratione mollitia voluptate. Obcaecati suscipit commodi a at ullam modi omnis voluptas quia? Quae, et maiores.
-            </p>
-          </div>
-        </div> -->
+      
       </div>
       <div id="pop-op">
         <div id="indhold"></div>
-        <!-- <button id="lukknap"></button> -->
+        
       </div>
       <footer>
         <div id="box">

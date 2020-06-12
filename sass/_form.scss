@@ -1,0 +1,222 @@
+#signoverlay {
+  background-color: rgba(0, 0, 0, 0.74);
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  z-index: 2;
+  transition: 0.3s;
+}
+
+#signupcomplete {
+  position: fixed;
+  top: 400px;
+  width: 100%;
+  min-height: 300px;
+  background-color: $white-background;
+  border-radius: 5px;
+  border: 3px solid black;
+  display: grid;
+  grid-template-rows: 1fr auto auto 1fr;
+  align-items: center;
+  align-content: center;
+  justify-items: center;
+  z-index: 3;
+  transition: 0.4s;
+
+  h1 {
+    font-size: 2.2rem;
+  }
+
+  p {
+    padding: 10px;
+  }
+
+  button {
+    border: none;
+    cursor: pointer;
+  }
+
+  button:hover {
+    transform: scale(1.2);
+    transition: 0.3s;
+  }
+}
+
+#submit {
+  cursor: pointer;
+  margin: auto;
+  background-color: green;
+  color: white;
+  transition: 0.3s;
+}
+
+#submit:hover {
+  filter: saturate(1.3);
+  transform: scale(1.04);
+}
+
+#submit:disabled {
+  background-color: grey;
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+#submit:disabled:hover {
+  filter: saturate(1);
+  transform: scale(1);
+}
+
+.rotateY {
+  transform: rotateY(90deg);
+}
+
+#signup {
+  max-width: 700px;
+  display: grid;
+  position: absolute;
+  z-index: 3;
+  transition: 0.4s;
+  background-color: $white-background;
+  border-radius: 8px;
+  top: 0;
+  left: 0;
+  padding: 40px;
+  border: 2px solid black;
+  width: 100vw;
+
+  input {
+    padding: 10px 0;
+    margin-bottom: 30px;
+    width: 100%;
+    outline: none;
+    border: none;
+    border-bottom: 2px solid black;
+    background-color: transparent;
+    color: black;
+  }
+
+  input[type="submit"] {
+    border-bottom: none;
+    cursor: pointer;
+    margin-bottom: 0;
+  }
+
+  input:focus ~ label,
+  input:valid ~ label {
+    top: -12px;
+    left: 0;
+    color: #aba9a0;
+    font-size: 12px;
+    font-weight: bold;
+  }
+
+  input:focus ~ label,
+  input:invalid:not(:placeholder-shown) ~ label {
+    top: -12px;
+    left: 0;
+    color: #aba9a0;
+    font-size: 12px;
+    font-weight: bold;
+  }
+
+  input:invalid:not(:placeholder-shown):not(:focus) {
+    border-bottom-color: rgb(201, 7, 7);
+    background-position-x: calc(100% - 16px);
+    background-position-y: 50%;
+    background-size: 20px 20px;
+    background-repeat: no-repeat;
+    background-image: $error;
+    animation: shake 0.13s 2 backwards;
+  }
+
+  input:valid:not(:focus) {
+    border-bottom-color: rgb(43, 152, 43);
+    background-position-x: calc(100% - 16px);
+    background-position-y: 50%;
+    background-size: 20px 20px;
+    background-repeat: no-repeat;
+    background-image: $check;
+  }
+}
+
+@keyframes shake {
+  50% {
+    transform: translateX(15px);
+  }
+}
+
+// label
+
+.inputcontainer {
+  display: grid;
+  grid-template-rows: auto auto auto;
+
+  display: flex;
+  flex-direction: column;
+  position: relative;
+
+  label {
+    position: absolute;
+    top: 10px;
+    left: 0;
+    pointer-events: none;
+    color: $yellow;
+    transition: 0.3s;
+  }
+
+  .help-text {
+    font-size: 10px;
+    color: #e43030;
+    margin: -15px 0 25px 0;
+  }
+}
+
+// input:valid + .help-text,
+input:focus + .help-text {
+  margin-bottom: 30px;
+}
+
+.hide_help {
+  display: none;
+}
+
+.hide {
+  opacity: 0;
+  pointer-events: none;
+}
+
+@media screen and (min-width: 700px) {
+  #signup {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr auto;
+
+    button {
+      width: 200px;
+      grid-row: 2/3;
+      grid-column: 1/3;
+      justify-self: center;
+      cursor: pointer;
+    }
+
+    > div {
+      margin: 20px;
+    }
+  }
+}
+
+@media screen and (min-width: 600px) {
+  #signupcomplete {
+    top: calc(52vh - 200px);
+    left: calc(50vw - 200px);
+    width: 400px;
+    min-height: 300px;
+  }
+  #signup {
+    top: calc(52vh - 300px);
+    left: calc(50vw - 300px);
+    width: 600px;
+  }
+}
